@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="css/var.css" type="text/css" />
   </head>
   <body>
-    <div class="index_wrap">
+    <div class="eventpage_wrap">
       <nav>
         <img src="images/logo_width.png" alt="로고" class="logoimg" />
         <ul>
-          <a href="index.html"><li class="menu_focus">매칭관리</li></a>
+          <a href="index.html"><li>매칭관리</li></a>
           <a href="userlist.html"> <li>유저관리</li></a>
           <a href="partner.html"><li>파트너관리</li></a>
           <a href="appmanage.html"><li>앱관리</li></a>
-          <a href="eventpage.html"><li>이벤트관리</li></a>
+          <a href="eventpage.html"><li class="menu_focus">이벤트관리</li></a>
         </ul>
       </nav>
       <!-- nav -->
@@ -37,21 +37,10 @@
           <form action="" class="search">
             <input
               type="search"
-              placeholder="고객이름, 연락처, 제품명을 입력해주세요."
+              placeholder="이벤트 제목, 신청자 등을 입력해주세요."
               class="txt_search"
             />
             <input type="submit" value="" class="btn_search" />
-          </form>
-          <form action="" class="radio">
-            <p>진행현황</p>
-            <input type="radio" id="inquire" name="sort" />
-            <label for="inquire">검토</label>
-            <input type="radio" id="wait" name="sort" />
-            <label for="wait">대기</label>
-            <input type="radio" id="complete" name="sort" />
-            <label for="complete">완료</label>
-            <input type="radio" id="cancel" name="sort" />
-            <label for="cancel">취소</label>
           </form>
         </div>
         <!-- form_wrap -->
@@ -60,34 +49,50 @@
           <thead>
             <tr>
               <td class="no">NO</td>
-              <td>작성자</td>
-              <td>신청자</td>
-              <td>매칭날짜</td>
-              <td>제품명</td>
-              <td>파트너</td>
-              <td>진행현황</td>
-              <td class="detail">상세보기</td>
+              <td class="eventtable_content">문의내용</td>
+              <td>문의자</td>
+              <td>연락처</td>
+              <td>문의일시</td>
+              <td class="detail">상담여부</td>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td class="underbar">홍길동</td>
-              <td class="underbar">박철수</td>
-              <td>2021.07.12</td>
-              <td>LG 스타일러</td>
+              <td class="underbar">렌탈관련하여 문의를 남깁니다.</td>
               <td>김영희</td>
-              <td>매칭대기</td>
-              <td class="detail">
-                <a href="match.html"><div class="btn_detail">보기</div></a>
+              <td>010-1234-4567</td>
+              <td>2021.09.27</td>
+              <td>
+                <div id="btn-modal" class="btn_detail btn-modal event_btn">
+                  보기
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td class="underbar">렌탈관련하여 문의를 남깁니다.</td>
+              <td>김영희</td>
+              <td>010-1234-4567</td>
+              <td>2021.09.27</td>
+              <td>
+                <div class="btn_detail event_btn complete">완료</div>
               </td>
             </tr>
           </tbody>
         </table>
+
+        <div id="modal" class="modal_window">
+          <div class="modal">
+            <h3 class="modal_title">문의내용</h3>
+            <div class="modal_content">문의내용입니다.</div>
+            <button class="modal_close">확인</button>
+          </div>
+        </div>
       </div>
       <!-- content_wrap -->
     </div>
-    <!--index_wrap -->
+    <!--eventpage_wrap -->
 
     <script type="text/javascript" src="js/app.js"></script>
   </body>

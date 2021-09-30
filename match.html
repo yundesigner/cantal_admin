@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cantal Market Admin</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/var.css" type="text/css" />
+  </head>
+  <body>
+    <div class="index_wrap">
+      <nav>
+        <img src="images/logo_width.png" alt="로고" class="logoimg" />
+        <ul>
+          <a href="index.html"><li class="menu_focus">매칭관리</li></a>
+          <a href="userlist.html"> <li>유저관리</li></a>
+          <a href="partner.html"><li>파트너관리</li></a>
+          <a href="appmanage.html"><li>앱관리</li></a>
+          <a href="eventpage.html"><li>이벤트관리</li></a>
+        </ul>
+      </nav>
+      <!-- nav -->
+
+      <div class="content_wrap">
+        <header>
+          <div>
+            <span>최고관리자</span>님 안녕하세요
+            <img src="images/hand.png" alt="손" />
+          </div>
+          <p>로그아웃</p>
+        </header>
+        <!-- header -->
+        <h2 class="content_title">매칭 상세보기</h2>
+        <div class="match_form">
+          <div class="match_title">
+            <ul>
+              <li class="li_title">제목</li>
+              <li class="li_content">제품양도하겠습니다.</li>
+              <li class="li_date">2021.08.21</li>
+            </ul>
+          </div>
+          <!-- match_title -->
+
+          <div class="match_person">
+            <div class="match_user">
+              <ul class="match_user_writer">
+                <li class="li_title">작성자</li>
+                <li class="li_content">홍길동</li>
+                <li class="li_title">연락처</li>
+                <li class="li_content">010-1234-5678</li>
+                <li class="li_title">주소</li>
+                <li class="li_content">부산광역시 서구 동대신동 1번지</li>
+              </ul>
+              <ul class="match_user_volunteer">
+                <li class="li_title">신청자</li>
+                <li class="li_content">박철수</li>
+                <li class="li_title">연락처</li>
+                <li class="li_content">010-1234-5678</li>
+                <li class="li_title">주소</li>
+                <li class="li_content">부산광역시 서구 동대신동 1번지</li>
+              </ul>
+            </div>
+            <div class="match_partner">
+              <ul>
+                <li class="li_title">파트너</li>
+                <li class="li_content">김영희</li>
+                <li class="li_title">연락처</li>
+                <li class="li_content">010-1234-5678</li>
+                <li class="li_title">업체</li>
+                <li class="li_content">웅진코웨이</li>
+              </ul>
+            </div>
+          </div>
+          <!-- match_person -->
+
+          <div class="match_status">
+            <ul>
+              <li class="li_title">매칭현황</li>
+              <li class="li_content">매칭대기</li>
+            </ul>
+            <form action="" id="match_status">
+              <select name="match_status" id="match_select">
+                <option value="matchcheck">매칭검토</option>
+                <option value="matchprogress">매칭진행</option>
+                <option value="matchcomplete">매칭완료</option>
+                <option value="matchcancel">매칭취소</option>
+              </select>
+              <input type="submit" value="수정" class="match_status_submit" />
+            </form>
+          </div>
+        </div>
+        <!-- match_form -->
+      </div>
+      <!-- content_wrap -->
+    </div>
+    <!--index_wrap -->
+
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
