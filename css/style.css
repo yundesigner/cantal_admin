@@ -69,7 +69,7 @@ header {
   justify-content: space-between;
   align-items: center;
   border-radius: 39px;
-  margin-top: 16px;
+  margin: 16px 0 32px;
 }
 header div {
   font-size: 18px;
@@ -284,3 +284,42 @@ table tbody {
 }
 
 /* --------------- 매칭관리 - 매칭 상세보기 ------------------ */
+
+.content_title {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 100%;
+  margin-bottom: 24px;
+}
+
+.match_form .li_title {
+  font-size: 14px;
+}
+
+.match_form .li_content {
+  font-size: 16px;
+  font-weight: 900;
+  margin-top: 8px;
+}
+
+.match_form .li_date {
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+}
+.match_box {
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: var(--boxshadow-default);
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+/* 매칭 상세보기 - 타이틀 */
+.match_title {
+  width: 90%;
+}
+
+.match_title .li_content {
+  display: flex;
+  justify-content: space-between;
+}

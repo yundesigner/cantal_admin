@@ -4,4 +4,6 @@
   --sub-blue-light: #e0e2ed;
   --sub-blue-deep: #565fa8;
   --red-color: #ff4d00;
+
+  --boxshadow-default: 4px 4px 13px rgba(199, 219, 234, 0.29);
 }
