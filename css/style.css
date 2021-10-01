@@ -153,6 +153,7 @@ header p {
 .underbar {
   text-decoration: underline;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /*index - table*/
@@ -231,7 +232,7 @@ table tbody {
 
 /* 모달창 */
 
-#modal {
+.modal_window {
   width: 100%;
   height: 100%;
   left: 0;
@@ -299,7 +300,6 @@ table tbody {
 .match_form .li_content {
   font-size: 16px;
   font-weight: 900;
-  margin-top: 8px;
 }
 
 .match_form .li_date {
@@ -322,4 +322,55 @@ table tbody {
 .match_title .li_content {
   display: flex;
   justify-content: space-between;
+  margin-top: 8px;
+}
+
+/* 매칭 상세보기 - user */
+.match_person {
+  display: flex;
+}
+.match_user {
+  width: 60%;
+}
+.match_user_writer,
+.match_user_volunteer {
+  display: flex;
+  align-items: center;
+}
+.match_form .li_title {
+  margin-right: 8px;
+}
+.match_form .li_content {
+  margin-right: 16px;
+}
+.match_partner {
+  width: 29%;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: column;
+}
+.match_partner ul {
+  display: flex;
+  margin-top: 16px;
+}
+/* 매칭 상세보기 - status */
+.match_status {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.match_status ul {
+  display: flex;
+  align-items: center;
+}
+
+.match_status_submit {
+  background: #333333;
+  border-radius: 15px;
+  color: #fff;
+  width: 52px;
+  height: 24px;
+  margin-left: 8px;
+  cursor: pointer;
 }
