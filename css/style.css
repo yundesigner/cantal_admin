@@ -16,6 +16,7 @@ body {
 }
 
 nav {
+  position: fixed;
   width: 300px;
   height: 100%;
   margin-right: 24px;
@@ -54,11 +55,15 @@ nav ul li {
   background: var(--main-blue);
   color: #fff;
 }
-
-/*header*/
+/* content_wrap */
 .content_wrap {
   width: 100%;
+  margin-left: 316px;
+  overflow-y: auto;
 }
+
+/*header*/
+
 header {
   width: 90%;
   padding: 0 32px;
@@ -90,6 +95,30 @@ header p {
   justify-content: flex-end;
 }
 
+/* paging */
+.page {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  color: #999;
+}
+.page ul {
+  display: flex;
+}
+.page ul li {
+  margin-right: 8px;
+}
+
+.page-left,
+.page-right {
+  color: #333;
+}
+.page-on {
+  color: #333;
+  font-weight: bold;
+}
+
+/* --------------------------------------index---------------------------------------- */
 /*index - form*/
 
 .form_wrap {
@@ -206,6 +235,9 @@ table tbody {
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* eventpage - form */
@@ -246,7 +278,7 @@ table tbody {
 
 .modal {
   width: 30%;
-  height: 40%;
+  height: auto;
   background: #ffffff;
   box-shadow: 0px 4px 9px 3px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -269,7 +301,7 @@ table tbody {
   padding: 16px;
 }
 .modal_close {
-  margin: 24px auto;
+  margin: 24px auto 0;
   align-items: center;
   background-color: #fff;
   border: 1px solid #3b2c8d;
@@ -373,4 +405,56 @@ table tbody {
   height: 24px;
   margin-left: 8px;
   cursor: pointer;
+}
+
+/* 매칭 상세보기 -content */
+.match_content {
+  width: 90%;
+}
+.match_content_inner {
+  margin: 8px 0;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.match_photos {
+  margin-top: 8px;
+  display: flex;
+}
+
+.match_photo {
+  width: 100px;
+  height: 100px;
+  margin-right: 8px;
+  background-color: #ececec;
+}
+
+/* 매칭 상세보기 - 댓글 */
+.match_comment {
+  margin-top: 32px;
+}
+.block {
+  width: 52px;
+  height: 24px;
+  background: var(--red-color);
+  color: #fff;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+.block.cancel {
+  background-color: #ccc;
+}
+
+.comment_counter {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* 매칭 상세보기 - 상담현황 */
+
+.match_counsel {
+  margin-bottom: 36px;
 }
