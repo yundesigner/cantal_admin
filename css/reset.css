@@ -1,3 +1,45 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 300;
+  src: url(Fonts/NanumSquareL.eot);
+  src: url(Fonts/NanumSquareL.eot?#iefix) format("embedded-opentype"),
+    url(Fonts/NanumSquareL.woff) format("woff"),
+    url(Fonts/NanumSquareL.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 400;
+  src: url(Fonts/NanumSquareR.eot);
+  src: url(Fonts/NanumSquareR.eot?#iefix) format("embedded-opentype"),
+    url(Fonts/NanumSquareR.woff) format("woff"),
+    url(Fonts/NanumSquareR.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 700;
+  src: url(Fonts/NanumSquareB.eot);
+  src: url(Fonts/NanumSquareB.eot?#iefix) format("embedded-opentype"),
+    url(Fonts/NanumSquareB.woff) format("woff"),
+    url(Fonts/NanumSquareB.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 800;
+  src: url(Fonts/NanumSquareEB.eot);
+  src: url(Fonts/NanumSquareEB.eot?#iefix) format("embedded-opentype"),
+    url(Fonts/NanumSquareEB.woff) format("woff"),
+    url(Fonts/NanumSquareEB.ttf) format("truetype");
+}
+
 html,
 body,
 div,
@@ -78,14 +120,18 @@ summary,
 time,
 mark,
 audio,
-video {
+video,
+input {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -100,18 +146,22 @@ nav,
 section {
   display: block;
 }
-html,
+
 body {
-  height: 100%;
+  line-height: 1;
+  margin: 0;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -119,14 +169,84 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+a {
+  color: #000000;
+  text-decoration: none;
+  outline: none;
+}
+
+input {
+  border: none;
+  background: none;
+}
+
 input:focus {
   outline: none;
 }
-a {
-  color: inherit;
-  text-decoration: none;
+
+button {
+  border: none;
+  background: none;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+select,
+textarea {
+  font-family: "Noto Sans KR", sans-serif;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  border: solid 1px #dddddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+select {
+  -webkit-appearance: none; /* for chrome */
+  -moz-appearance: none; /*for firefox*/
+  appearance: none;
+  background: url("images/dropdown.png") no-repeat 264px 50%;
+  cursor: pointer;
+  padding: 0 45px 0 26px;
+}
+
+#isMobile select {
+  background: url("images/dropdown.png") no-repeat 95% 50%;
+  border-radius: 4px;
+}
+
+select::-ms-expand {
+  display: none; /*for IE10,11*/
+}
+
+div,
+span {
+  word-break: keep-all;
+}
+
+td,
+th {
+  padding: 0 6px !important;
+}
+
+.txt_line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html,
+body {
+  height: 100%;
 }

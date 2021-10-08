@@ -2,7 +2,6 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700");
 
 /* index - nav */
-
 body {
   background-color: var(--main-bg-color);
   font-family: "Roboto", sans-serif;
@@ -39,7 +38,7 @@ nav ul {
 }
 
 nav ul li {
-  width: 264px;
+  width: 100vw;
   padding-right: 36px;
   display: flex;
   align-items: center;
@@ -55,15 +54,16 @@ nav ul li {
   background: var(--main-blue);
   color: #fff;
 }
+
 /* content_wrap */
 .content_wrap {
   width: 100%;
   margin-left: 316px;
   overflow-y: auto;
+  padding-bottom: 120px;
 }
 
 /*header*/
-
 header {
   width: 90%;
   padding: 0 32px;
@@ -76,19 +76,23 @@ header {
   border-radius: 39px;
   margin: 16px 0 32px;
 }
+
 header div {
   font-size: 18px;
   color: #fff;
   display: flex;
   align-items: center;
 }
+
 header div span {
   font-weight: bold;
 }
+
 header img {
   width: 20px;
   height: 20px;
 }
+
 header p {
   font-size: 14px;
   color: #fff;
@@ -102,9 +106,11 @@ header p {
   justify-content: center;
   color: #999;
 }
+
 .page ul {
   display: flex;
 }
+
 .page ul li {
   margin-right: 8px;
 }
@@ -113,14 +119,111 @@ header p {
 .page-right {
   color: #333;
 }
+
 .page-on {
   color: #333;
   font-weight: bold;
 }
 
-/* --------------------------------------index---------------------------------------- */
-/*index - form*/
+/* DECORATION */
+.left{
+  text-align: left;
+}
 
+/* --------------------------------------index---------------------------------------- */
+/*index - login*/
+.login{
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.login_in{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  min-width: 320px;
+  width: 384px;
+  min-height: 480px;
+}
+
+.login img{
+  width: 104px;
+  height: 93px;
+  margin-bottom: 2.75rem;
+}
+
+.login-form{
+  position: relative;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.login-form h2{
+  font-size: 12px;
+}
+
+.login-form input{
+  width: 100%;
+  padding: 16px;
+  background: #FAFAFA;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+}
+
+.login-form input::placeholder{
+  color: #999;
+}
+
+.login-form img{
+  display: none;
+  position: absolute;
+  top:-98px;
+  right:12px;
+  width: 20px;
+  height: 20px;
+}
+
+label{
+  font-size: 14px !important;
+  color: #666;
+}
+
+input[type=checkbox] {
+  display:none;
+}
+input[type=checkbox] + label { 
+  cursor: pointer; 
+  padding-left: 23px; 
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('./../images/icon_check.png');
+}
+input[type=checkbox]:checked + label {
+  background-image: url('./../images/icon_check_on.png');
+}
+input[type=checkbox]:disabled + label {
+  background-image: url('./../images/icon_check_on.png');
+}
+
+.blue-btn{
+  font-size: 16px;
+  color:#fff;
+  background-color: #55C4F1;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 19px 0 11px;
+  padding: 0.8em 0;
+}
+
+/*index - form*/
 .form_wrap {
   margin-top: 32px;
   display: flex;
@@ -179,6 +282,7 @@ header p {
 .radio input {
   margin: 0 4px 0 16px !important;
 }
+
 .underbar {
   text-decoration: underline;
   font-weight: bold;
@@ -186,7 +290,6 @@ header p {
 }
 
 /*index - table*/
-
 table {
   width: 80%;
   table-layout: fixed;
@@ -194,10 +297,12 @@ table {
   text-align: center;
   margin-top: 32px;
 }
+
 table tr {
   height: 32px;
   line-height: 32px;
 }
+
 table tr td {
   height: 32px;
   border-right: 2px solid var(--main-bg-color);
@@ -205,12 +310,14 @@ table tr td {
   text-align: center;
   vertical-align: middle;
 }
+
 table thead {
   background-color: var(--sub-blue-light);
   color: var(--sub-blue-deep);
   font-weight: bold;
   height: 32px;
 }
+
 table tbody {
   background-color: #fff;
 }
@@ -218,12 +325,12 @@ table tbody {
 .no {
   width: 5%;
 }
+
 .detail {
   width: 8%;
 }
 
 /* button */
-
 .btn_detail {
   width: 52px;
   height: 24px;
@@ -241,7 +348,6 @@ table tbody {
 }
 
 /* eventpage - form */
-
 .eventpage_wrap {
   width: 100%;
   height: 100%;
@@ -263,7 +369,6 @@ table tbody {
 }
 
 /* 모달창 */
-
 .modal_window {
   width: 100%;
   height: 100%;
@@ -274,9 +379,12 @@ table tbody {
   align-items: center;
   justify-content: center;
   background: rgba(51, 51, 51, 0.5);
+  z-index: 999;
 }
 
 .modal {
+  display: flex;
+  flex-direction: column;
   width: 30%;
   height: auto;
   background: #ffffff;
@@ -291,6 +399,22 @@ table tbody {
   font-size: 16px;
   line-height: 100%;
 }
+
+.modal_section{
+  display: flex;
+}
+
+.modal_section h3{
+  margin-top: 6px;
+  margin-right: 15px;
+}
+
+.modal_section textarea{
+  width: 100%;
+  height: 150px;
+  margin-top: 0;
+}
+
 .modal_content {
   font-size: 16px;
   margin-top: 24px;
@@ -300,9 +424,9 @@ table tbody {
   height: 84%;
   padding: 16px;
 }
+
 .modal_close {
   margin: 24px auto 0;
-  align-items: center;
   background-color: #fff;
   border: 1px solid #3b2c8d;
   box-sizing: border-box;
@@ -311,13 +435,9 @@ table tbody {
   cursor: pointer;
   width: 80px;
   height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* --------------- 매칭관리 - 매칭 상세보기 ------------------ */
-
 .content_title {
   font-weight: 900;
   font-size: 18px;
@@ -346,6 +466,7 @@ table tbody {
   border-radius: 5px;
   margin-bottom: 8px;
 }
+
 /* 매칭 상세보기 - 타이틀 */
 .match_title {
   width: 90%;
@@ -361,30 +482,37 @@ table tbody {
 .match_person {
   display: flex;
 }
+
 .match_user {
   width: 60%;
 }
+
 .match_user_writer,
 .match_user_volunteer {
   display: flex;
   align-items: center;
 }
+
 .match_form .li_title {
   margin-right: 8px;
 }
+
 .match_form .li_content {
   margin-right: 16px;
 }
+
 .match_partner {
   width: 29%;
   margin-left: 1%;
   display: flex;
   flex-direction: column;
 }
+
 .match_partner ul {
   display: flex;
   margin-top: 16px;
 }
+
 /* 매칭 상세보기 - status */
 .match_status {
   width: 90%;
@@ -398,19 +526,35 @@ table tbody {
 }
 
 .match_status_submit {
-  background: #333333;
-  border-radius: 15px;
-  color: #fff;
+  cursor: pointer;
   width: 52px;
   height: 24px;
+  font-size: 13px;
+  color: #fff;
+  background: #333333;
+  border-radius: 15px;
   margin-left: 8px;
-  cursor: pointer;
+  padding: 2px 12px 3px 12px;
+}
+
+#match_select, #work_section_select{ 
+  width: 90px;
+  height: 30px;
+  color: #666;
+  font-size: 13px;
+  border: 1px solid #ECECEC;
+  background: url(./../images/icon_arrow_dn.png);
+  background-size: 10px 8px;
+  background-repeat: no-repeat;
+  background-position: center right 8px;
+  padding:4px 8px;
 }
 
 /* 매칭 상세보기 -content */
 .match_content {
   width: 90%;
 }
+
 .match_content_inner {
   margin: 8px 0;
   width: 100%;
@@ -418,7 +562,9 @@ table tbody {
   border: 1px solid #ececec;
   box-sizing: border-box;
   border-radius: 5px;
+  padding: 10px;
 }
+
 .match_photos {
   margin-top: 8px;
   display: flex;
@@ -433,7 +579,12 @@ table tbody {
 
 /* 매칭 상세보기 - 댓글 */
 .match_comment {
+  width: 68%;
   margin-top: 32px;
+}
+
+.match_comment table{
+  width: 100%;
 }
 .block {
   width: 52px;
@@ -453,8 +604,76 @@ table tbody {
   font-size: 16px;
 }
 
-/* 매칭 상세보기 - 상담현황 */
+.match_comment .page{
+  margin:24px;
+}
 
+/* 매칭 상세보기 - 상담현황 */
 .match_counsel {
+  position: relative;
+  width: 80%;
   margin-bottom: 36px;
+}
+
+.modalCounsel textarea{
+  width: 100%;
+  height: 300px;
+}
+
+.modalCounsel .array, .modalWork .array{
+  text-align: center;
+}
+
+.modalCounsel .array .modal_close:first-child, .modalWork .array .modal_close:first-child{
+  margin-right: 16px;
+}
+
+.match_counsel table{
+  width: 100%;
+}
+
+.btn_counsel{
+  position: absolute;
+  top:20px;
+  right: 0;
+  width: 80px;
+  height: 24px;
+  color:#565FA8;
+  background: #FFFFFF;
+  border: 1px solid #565FA8;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.counsel_look textarea{
+  width: 100%;
+  height: 88px;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+  margin-top: 8px;
+  margin-bottom: 30px;
+}
+
+.counsel_look td{
+  position: relative;
+}
+
+.counsel_look .btn_wrap{
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+}
+
+/* 매칭 상세보기 - 업무현황*/
+.match_work{
+  position: relative;
+  width: 90%;
+}
+
+.match_work table{
+  width: 100%;
+}
+
+.modalWork h3{
+  margin-bottom: 24px;
 }
