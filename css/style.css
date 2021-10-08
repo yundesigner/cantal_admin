@@ -289,6 +289,14 @@ input[type=checkbox]:disabled + label {
   cursor: pointer;
 }
 
+.indexPage .index_in{
+  width: 80%;
+}
+
+.indexPage .index_in table{
+  width: 100%;
+}
+
 /*index - table*/
 table {
   width: 80%;
