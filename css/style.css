@@ -289,6 +289,7 @@ input[type=checkbox]:disabled + label {
   cursor: pointer;
 }
 
+/*211008*/
 .indexPage .index_in{
   width: 80%;
 }
