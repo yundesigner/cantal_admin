@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cantal Market Admin</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/var.css" type="text/css" />
+  </head>
+  <body>
+    <div class="eventpage_wrap">
+      <nav>
+        <img src="images/logo_width.png" alt="로고" class="logoimg" />
+        <ul>
+          <a href="index.html"><li>매칭관리</li></a>
+          <a href="userlist.html"> <li>유저관리</li></a>
+          <a href="partner.html"><li>파트너관리</li></a>
+          <a href="appmanage.html"><li>앱관리</li></a>
+          <a href="eventpage.html"><li class="menu_focus">이벤트관리</li></a>
+        </ul>
+      </nav>
+      <!-- nav -->
+
+      <div class="content_wrap">
+        <header>
+          <div>
+            <span>최고관리자</span>님 안녕하세요
+            <img src="images/hand.png" alt="손" />
+          </div>
+
+          <p>로그아웃</p>
+        </header>
+        <!-- header -->
+        <div class="form_wrap">
+          <form action="" class="search">
+            <input
+              type="search"
+              placeholder="이벤트 제목, 신청자 등을 입력해주세요."
+              class="txt_search"
+            />
+            <input type="submit" value="" class="btn_search" />
+          </form>
+        </div>
+        <!-- form_wrap -->
+
+        <table class="match_table">
+          <thead>
+            <tr>
+              <th class="no">NO</th>
+              <th class="eventtable_content">문의내용</th>
+              <th>문의자</th>
+              <th>연락처</th>
+              <th>문의일시</th>
+              <th class="detail">상담여부</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="underbar" onclick="openModal(1)">
+                렌탈관련하여 문의를 남깁니다.
+              </td>
+              <td>김영희</td>
+              <td>010-1234-4567</td>
+              <td>2021.09.27</td>
+              <td>
+                <div class="btn_detail event_btn">대기</div>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td class="underbar" onclick="openModal(2)">
+                렌탈관련하여 문의를 남깁니다.
+              </td>
+              <td>김영희</td>
+              <td>010-1234-4567</td>
+              <td>2021.09.27</td>
+              <td>
+                <div class="btn_detail event_btn complete">완료</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="modal_window modal1">
+          <div class="modal">
+            <h3 class="modal_title">문의내용</h3>
+            <div class="modal_content">문의내용입니다.</div>
+            <button class="modal_close">확인</button>
+          </div>
+        </div>
+
+        <div class="modal_window modal2">
+          <div class="modal">
+            <h3 class="modal_title">문의내용</h3>
+            <div class="modal_content">문의내용입니다두번째.</div>
+            <button class="modal_close">확인</button>
+          </div>
+        </div>
+      </div>
+      <!-- content_wrap -->
+    </div>
+    <!--eventpage_wrap -->
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  </body>
+</html>
