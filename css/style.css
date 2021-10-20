@@ -28,9 +28,10 @@ nav {
 }
 
 .logoimg {
-  width: 134px;
+  width: 170px;
   padding: 32px 32px 32px 0;
 }
+
 nav ul {
   display: flex;
   flex-direction: column;
@@ -104,7 +105,6 @@ header p {
   margin-top: 40px;
   display: flex;
   justify-content: center;
-  color: #999;
 }
 
 .page ul {
@@ -113,64 +113,127 @@ header p {
 
 .page ul li {
   margin-right: 8px;
-}
-
-.page-left,
-.page-right {
-  color: #333;
+  color: #999;
 }
 
 .page-on {
-  color: #333;
+  color: #333 !important;
   font-weight: bold;
 }
 
 /* DECORATION */
-.left{
+.left {
   text-align: left;
 }
 
+.w80 {
+  width: 80% !important;
+}
+
+.fw800{
+  font-weight: 800 !important;
+}
+
+.fs16{
+  font-size: 16px;
+}
+
+.fwb{
+  font-weight: bold;
+}
+
+.mt15{
+  margin-top: 15px;
+}
+
+.mt30{
+  margin-top: 30px;
+}
+
+.ml-26 img{
+  width: 154px;
+  height: 192px;
+  margin-left: -26px;
+}
+
+.mb15{
+  margin-bottom: 15px !important;
+}
+
+.pp {
+  padding: 16px 0 !important;
+}
+
+.pr15{
+  padding-right: 15px !important;
+}
+
+
+.h64 {
+  height: 64px !important;
+}
+
+.blue {
+  background-color: #565FA8 !important;
+}
+
+.orange{
+  background-color: #FF4D00 !important;
+}
+
+.dn {
+  display: none !important;
+}
+
+.df {
+  display: flex;
+}
+
+.df_jsb{
+  display: flex;
+  justify-content: space-between;
+}
 /* --------------------------------------index---------------------------------------- */
 /*index - login*/
-.login{
+.login {
   display: none;
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
   z-index: 999;
 }
 
-.login_in{
+.login_in {
   position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   min-width: 320px;
   width: 384px;
   min-height: 480px;
 }
 
-.login img{
+.login img {
   width: 104px;
   height: 93px;
   margin-bottom: 2.75rem;
 }
 
-.login-form{
+.login-form {
   position: relative;
   text-align: left;
   margin-bottom: 16px;
 }
 
-.login-form h2{
+.login-form h2 {
   font-size: 12px;
 }
 
-.login-form input{
+.login-form input {
   width: 100%;
   padding: 16px;
   background: #FAFAFA;
@@ -178,44 +241,47 @@ header p {
   border-radius: 5px;
 }
 
-.login-form input::placeholder{
+.login-form input::placeholder {
   color: #999;
 }
 
-.login-form img{
+.login-form img {
   display: none;
   position: absolute;
-  top:-98px;
-  right:12px;
+  top: -98px;
+  right: 12px;
   width: 20px;
   height: 20px;
 }
 
-label{
+label {
   font-size: 14px !important;
   color: #666;
 }
 
 input[type=checkbox] {
-  display:none;
+  display: none;
 }
-input[type=checkbox] + label { 
-  cursor: pointer; 
-  padding-left: 23px; 
+
+input[type=checkbox]+label {
+  cursor: pointer;
+  padding-left: 23px;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url('./../images/icon_check.png');
 }
-input[type=checkbox]:checked + label {
-  background-image: url('./../images/icon_check_on.png');
-}
-input[type=checkbox]:disabled + label {
+
+input[type=checkbox]:checked+label {
   background-image: url('./../images/icon_check_on.png');
 }
 
-.blue-btn{
+input[type=checkbox]:disabled+label {
+  background-image: url('./../images/icon_check_on.png');
+}
+
+.blue-btn {
   font-size: 16px;
-  color:#fff;
+  color: #fff;
   background-color: #55C4F1;
   font-weight: bold;
   border-radius: 5px;
@@ -289,13 +355,12 @@ input[type=checkbox]:disabled + label {
   cursor: pointer;
 }
 
-/*211008*/
-.indexPage .index_in{
-  width: 80%;
+.table_wrap {
+  width: 80% !important;
 }
 
-.indexPage .index_in table{
-  width: 100%;
+.table_wrap table {
+  width: 100% !important;
 }
 
 /*index - table*/
@@ -313,18 +378,20 @@ table tr {
 }
 
 table tr td {
+  text-align: center;
+  vertical-align: middle;
   height: 32px;
   border-right: 2px solid var(--main-bg-color);
   border-top: 2px solid var(--main-bg-color);
-  text-align: center;
-  vertical-align: middle;
 }
 
-table thead {
-  background-color: var(--sub-blue-light);
-  color: var(--sub-blue-deep);
-  font-weight: bold;
+table th {
   height: 32px;
+  font-weight: bold;
+  color: var(--sub-blue-deep);
+  background-color: var(--sub-blue-light);
+  border-right: 2px solid var(--main-bg-color);
+  border-top: 2px solid var(--main-bg-color);
 }
 
 table tbody {
@@ -371,6 +438,10 @@ table tbody {
   background: var(--red-color);
 }
 
+.btn_detail.event_btn a {
+  color: #fff;
+}
+
 .btn_detail.event_btn.complete {
   background: none;
   color: #333;
@@ -409,16 +480,16 @@ table tbody {
   line-height: 100%;
 }
 
-.modal_section{
+.modal_section {
   display: flex;
 }
 
-.modal_section h3{
+.modal_section h3 {
   margin-top: 6px;
   margin-right: 15px;
 }
 
-.modal_section textarea{
+.modal_section textarea {
   width: 100%;
   height: 150px;
   margin-top: 0;
@@ -447,11 +518,24 @@ table tbody {
 }
 
 /* --------------- 매칭관리 - 매칭 상세보기 ------------------ */
+.btn-block {
+  position: relative;
+  width: 90%;
+}
+
 .content_title {
-  font-weight: 900;
+  font-weight: 600;
   font-size: 18px;
   line-height: 100%;
   margin-bottom: 24px;
+}
+
+.btn-block .btn_counsel {
+  top: 0;
+  right: 0;
+  color: #FF4D00;
+  background-color: #fff;
+  border: 1px solid #FF4D00;
 }
 
 .match_form .li_title {
@@ -460,7 +544,7 @@ table tbody {
 
 .match_form .li_content {
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .match_form .li_date {
@@ -468,6 +552,7 @@ table tbody {
   font-size: 14px;
   color: #666666;
 }
+
 .match_box {
   padding: 16px;
   background-color: #fff;
@@ -492,6 +577,10 @@ table tbody {
   display: flex;
 }
 
+.partner_info{
+  display: none;
+}
+
 .match_user {
   width: 60%;
 }
@@ -511,10 +600,11 @@ table tbody {
 }
 
 .match_partner {
-  width: 29%;
-  margin-left: 1%;
+  position: relative;
   display: flex;
   flex-direction: column;
+  width: 29%;
+  margin-left: 1%;
 }
 
 .match_partner ul {
@@ -522,10 +612,21 @@ table tbody {
   margin-top: 16px;
 }
 
+.match_partner img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84px;
+  height: 55px;
+  cursor: pointer;
+}
+
 /* 매칭 상세보기 - status */
-.match_status {
+.match_status,
+.member_state {
   width: 90%;
-  display: flex;
+  display: flex !important;
   align-items: center;
 }
 
@@ -534,7 +635,8 @@ table tbody {
   align-items: center;
 }
 
-.match_status_submit {
+.match_status_submit,
+.member_state_submit {
   cursor: pointer;
   width: 52px;
   height: 24px;
@@ -546,7 +648,7 @@ table tbody {
   padding: 2px 12px 3px 12px;
 }
 
-#match_select, #work_section_select{ 
+#match_select, .select_basic {
   width: 90px;
   height: 30px;
   color: #666;
@@ -556,7 +658,41 @@ table tbody {
   background-size: 10px 8px;
   background-repeat: no-repeat;
   background-position: center right 8px;
-  padding:4px 8px;
+  padding: 4px 8px;
+}
+
+.matchPage .gray {
+  background-color: #999999;
+  margin-top: -3px;
+  margin-left: 0;
+}
+
+.modalPartner .modal_in{
+  margin:0 auto;
+}
+
+.modalPartner .fw800{
+  padding-left:100px;
+}
+
+.modalPartner .modal_title {
+  width: 60px;
+
+}
+
+.modalPartner .select_basic{
+  width: 200px;
+  height: 32px;
+  border: 1px solid #ECECEC;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.modalPartner .modal_content{
+  width: 200px;
+  border: 1px solid #ECECEC;
+  margin:0 !important;
+  padding: 2px 10px 2px 10px !important;
 }
 
 /* 매칭 상세보기 -content */
@@ -588,13 +724,14 @@ table tbody {
 
 /* 매칭 상세보기 - 댓글 */
 .match_comment {
-  width: 68%;
+  width: 70%;
   margin-top: 32px;
 }
 
-.match_comment table{
+.match_comment table {
   width: 100%;
 }
+
 .block {
   width: 52px;
   height: 24px;
@@ -604,6 +741,7 @@ table tbody {
   border: none;
   cursor: pointer;
 }
+
 .block.cancel {
   background-color: #ccc;
 }
@@ -613,48 +751,53 @@ table tbody {
   font-size: 16px;
 }
 
-.match_comment .page{
-  margin:24px;
+.match_comment .page {
+  margin: 24px;
 }
 
 /* 매칭 상세보기 - 상담현황 */
 .match_counsel {
   position: relative;
-  width: 80%;
+  width: 70%;
   margin-bottom: 36px;
 }
 
-.modalCounsel textarea{
+.modalCounsel textarea {
   width: 100%;
   height: 300px;
+  margin-top: 0;
 }
 
-.modalCounsel .array, .modalWork .array{
+.array {
   text-align: center;
 }
 
-.modalCounsel .array .modal_close:first-child, .modalWork .array .modal_close:first-child{
+.array .modal_close {
   margin-right: 16px;
 }
 
-.match_counsel table{
+.match_counsel table {
   width: 100%;
 }
 
-.btn_counsel{
+.btn_counsel {
   position: absolute;
-  top:20px;
+  top: 20px;
   right: 0;
   width: 80px;
   height: 24px;
-  color:#565FA8;
+  color: #565FA8;
   background: #FFFFFF;
   border: 1px solid #565FA8;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.counsel_look textarea{
+.counsel_look{
+  display: none;
+}
+
+.counsel_look textarea {
   width: 100%;
   height: 88px;
   border: 1px solid #ECECEC;
@@ -663,26 +806,347 @@ table tbody {
   margin-bottom: 30px;
 }
 
-.counsel_look td{
+.counsel_look td {
   position: relative;
 }
 
-.counsel_look .btn_wrap{
+.counsel_look .btn_wrap {
   position: absolute;
   bottom: 4px;
   right: 8px;
 }
 
 /* 매칭 상세보기 - 업무현황*/
-.match_work{
+.match_work {
+  position: relative;
+  width: 40%;
+}
+
+.match_work table {
+  width: 100%;
+}
+
+.modalWork h3,
+.modalPartner h3,
+.modalCounsel h3 {
+  margin-bottom: 24px;
+}
+
+/* user - 유저페이지 */
+.tab {
+  display: flex;
+  width: 90%;
+  border-bottom: 1px solid #E0E2ED;
+}
+
+.tab .on {
+  color: #fff;
+  background: #4AA6EE;
+}
+
+.tab li a {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: #E0E2ED;
+  background-color: #fff;
+  border: 1px solid #E0E2ED;
+  border-bottom: none;
+  border-radius: 20px 20px 0px 0px;
+  box-sizing: border-box;
+  padding: 13px 58px 15px 58px;
+}
+
+.member_state p {
+  margin-right: 12px;
+}
+
+.user_info {
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 24px;
+}
+
+.user_info input {
+  width: 200px;
+  height: 24px;
+  color: #999999;
+  background: #FFFFFF;
+  border: 1px solid #ECECEC;
+  box-sizing: border-box;
+  border-radius: 2px;
+  padding-left: 8px;
+}
+
+.user_info tbody {
+  display: flex;
+}
+
+.user_info th,
+.user_info td {
+  display: block;
+  text-align: left;
+  padding-left: 24px !important;
+}
+
+.user_info th {
+  width: 154px;
+}
+
+.user_info td {
+  width: 432px;
+}
+
+.user_active {
+  width: 80%;
+}
+
+.user_active table {
+  width: 100%;
+}
+
+.user_push {
+  position: relative;
+  width: 67%;
+}
+
+.user_push table {
+  width: 100%;
+}
+
+.user_push table th {
+  color: #fff;
+  background-color: #565FA8;
+}
+
+.modalPush_titleArea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 16px;
+}
+
+.modalPush .modal_content,
+.modalPushRO .modal_content,
+.modalAnswer .modal_content {
+  height: 200px;
+}
+
+/* user - 유저페이지 - userCounselCheck/userCCPage */
+.userCCPage .tab {
+  margin-bottom: 24px;
+}
+
+.userCCPage .detail {
   position: relative;
   width: 90%;
 }
 
-.match_work table{
+.userCCPage .btn_detail {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 80px;
+}
+
+.modalAnswer .df {
+  margin-top: 20px;
+}
+
+.modalAnswer img {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-top: -4px;
+  margin-left: 10px;
+}
+
+.userCCPage .match_person{
+  width: 530px;
+}
+
+.answerBox{
+  display: none;
+  position: relative;
+  width: 90%;
+}
+
+.answerBox .match_box{
   width: 100%;
 }
 
-.modalWork h3{
-  margin-bottom: 24px;
+.userCCPage .btn_wrap{
+  position: absolute;
+  bottom: -42px !important;
+  right: 0;
+}
+
+.userCCPage .btn_wrap button{
+  width: 84px;
+}
+
+.userCCPage .btn_wrap .block{
+  background-color: #333333;
+}
+
+.userCCPage .btn_wrap .block:last-child{
+  background-color: #565FA8;
+  margin-left: 16px;
+}
+
+/* 파트너페이지 - partnerAddPage */
+.partnerAddPage .user_info td{
+  color: #999999;
+}
+
+.partnerAddPage .user_info:first-child{
+  width: 742px;
+}
+
+.partner_picture th{
+  display: flex;
+  align-items: center;
+  height: 192px;
+}
+
+.partner_picture td{
+  width: 154px;
+}
+
+.partnerAddPage .array{
+  width: 80%;
+}
+
+.partnerAddPage .array .del{
+  border: 1px solid #CCCCCC;
+}
+
+.partnerAddPage .user_info span{
+  color:#FF5925;
+  margin-left: 4px;
+}
+
+.partnerAddPage .upload{
+  display: flex;
+  padding:100px;
+}
+
+.partnerAddPage .upload img{
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-top: 158px;
+  margin-left: -10px;
+}
+
+.upload_name{
+  background-color: red;
+  margin: 153px 0 0 5px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url('../images/icon_calendar.png') no-repeat;
+  background-size: 16px 16px;
+  background-position: 0 center;
+  width: 18px;
+  height: 16px;
+  border-width: thin;
+}
+
+/* 앱페이지 - appPage */
+.appPage .btn_counsel{
+  position: absolute;
+  top:20px;
+  right:0;
+}
+
+.appPage .table_wrap{
+  position: relative;
+  padding-top: 20px;
+}
+
+/* 앱 배너 페이지 - appBannerPage */
+
+.appBannerPage .match_person .match_user{
+  display: flex;
+}
+
+.appBannerPage .match_person .match_box{
+  margin-right: 10px;
+}
+
+.appBannerPage .df{
+  width: 90%;
+}
+
+.appBannerPage .df .match_box{
+  width: 50%;
+  margin-right: 10px;
+}
+
+.appBannerPage .df .match_box:last-child{
+  margin-right: 0;
+}
+
+.appBannerPage .df .li_title{
+  margin-bottom: 15px;
+}
+
+.appBannerPage textarea{
+  height: 400px;
+  margin-top: 0;
+}
+
+.appBannerPage .img_area{
+  width: 400px;
+  height: 400px;
+  background: #ECECEC;
+}
+
+.appBannerPage .df_jsb{
+  width: 90%;
+}
+
+.appBannerPage .block{
+  width: auto;
+  background-color: #333333;
+  padding: 2px 16px 4px 16px;
+  margin-top: 14px;
+}
+
+.appBannerPage .btn_wrap .block:last-child{
+  background-color: #565FA8;
+  margin-left: 16px;
+}
+
+/* 앱 배너 페이지 - appBannerPage - 배너관리 등록하기 */
+.appBannerPage .li_content input{
+  width: 100%;
+  border:1px solid #ECECEC;
+  border-radius: 5px;
+  padding: 0 10px 0 10px;
+}
+
+.appBannerPage .li_title{
+  margin-right: 16px;
+}
+
+.appBannerPage .upload img{
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.appBannerPage .match_user_writer .df p{
+  padding: 8px;
+}
+
+.appBannerPage .df input[type="date"]{
+  padding-left:8px;
 }
