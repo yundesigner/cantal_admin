@@ -59,17 +59,17 @@ for (var i = 0; i < goToMatch.length; i++) {
 // 답변등록
 function answerAdd() {
   const answerBox = document.querySelector('.answerBox');
-  const answerAddBtn = document.querySelector('.answerAddBtn');
+  // const answerAddBtn = document.querySelector('.answerAddBtn');
   answerBox.style.display = 'block';
-  answerAddBtn.style.display = 'none';
+  // answerAddBtn.style.display = 'none';
 }
 
 // 답변삭제
 function answerRemove() {
   const answerBox = document.querySelector('.answerBox');
-  const answerAddBtn = document.querySelector('.answerAddBtn');
+  // const answerAddBtn = document.querySelector('.answerAddBtn');
   answerBox.style.display = 'none';
-  answerAddBtn.style.display = 'block';
+  // answerAddBtn.style.display = 'block';
 }
 
 // 앱관리/배너관리 - 수정

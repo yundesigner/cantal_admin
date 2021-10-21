@@ -156,7 +156,27 @@ require_once "../connect/db_connect.php";
         </thead>
         <tbody>
         <?php
-        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, date_format(date, '%Y-%m-%d') AS date_format FROM cm_app_push AS ap LEFT JOIN cm_user_info AS ui ON ap.u_id = ui.u_id WHERE ui.id = '{$_GET['id']}' OR ap.target = '전체' ORDER BY id DESC";
+        $p_pageNum = 2;
+        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, date_format(date, '%Y-%m-%d') AS date_format
+                FROM cm_app_push AS ap
+                LEFT JOIN cm_user_info AS ui ON ap.u_id = ui.u_id
+                WHERE ui.id = '{$_GET['id']}' OR ap.target = '전체'
+                ORDER BY id DESC";
+        $result = myQuery($sql);
+        $p_pageTotal = mysqli_num_rows($result);
+        $p_p = $_GET['p_p'];
+        if (empty($p_p)) {
+          $p_p = 0;
+        } elseif ($p_p < 0) {
+          $p_p = 0;
+        } elseif ($p_p > $p_pageTotal) {
+          $p_p = $p_p - 2;
+        }
+        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, date_format(date, '%Y-%m-%d') AS date_format
+                FROM cm_app_push AS ap
+                LEFT JOIN cm_user_info AS ui ON ap.u_id = ui.u_id
+                WHERE ui.id = '{$_GET['id']}' OR ap.target = '전체'
+                ORDER BY id DESC LIMIT {$p_p}, {$p_pageNum}";
         $result = myQuery($sql);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -177,12 +197,56 @@ require_once "../connect/db_connect.php";
       </table>
       <div class="page">
         <ul>
-          <li class="page-left">&lt;</li>
-          <li class="page-on">1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li class="page-right">&gt;</li>
+          <a href='/admin/userList.php?id=<?= $_GET['id'] ?>&p_p=<?php
+          if ($p_p <= 0) {
+            echo $p_p;
+          } else {
+            echo $p_p - 2;
+          }
+          ?>'>
+            <li class="page-left">&lt;</li>
+          </a>
+          <?php
+          $id = $_GET['id'];
+          $p_pages = ceil($p_pageTotal / $p_pageNum);
+          $p_pageGroup = ceil($p_pages / 10);
+          $p_pageCount = ceil(ceil($p_pages / $p_pageGroup) / 10) * 10;
+          $p_pageEnd = ceil($p_pageTotal / 20) * 20 - 2;
+
+          for ($j = 1; $j < $p_pageGroup + 1; $j++) {
+            if ($p_p < 20) {
+              $p_Count = 1;
+            } elseif ($p_p <= $p_pageEnd - (20 * ($j - 1))) {
+              $p_Count = 1 + (10 * $p_pageGroup) - (10 * $j);
+            }
+          }
+
+          for ($i = $p_Count; $i - $p_Count < $p_pageCount; $i++) {
+            $p_nextPage = $p_pageNum * ($i - 1);
+            $p_activePage = $_GET['p_p'] / 2 + 1;
+            $className = '';
+            if ($p_activePage == $i) {
+              $className = 'page-on';
+            }
+            echo "<a href='$_SERVER[PHP_SELF]?id=$id&p_p=$p_nextPage";
+
+            echo "'><li class='$className'>$i</li></a>";
+
+            if ($i >= $p_pages) {
+              $i = $p_pages;
+              break;
+            }
+          }
+          ?>
+          <a href='/admin/userList.php?id=<?= $_GET['id'] ?>&p_p=<?php
+          if ($p_p + 2 >= $p_pageTotal) {
+            echo $p_p;
+          } else {
+            echo $p_p + 2;
+          }
+          ?>'>
+            <li class="page-right">&gt;</li>
+          </a>
         </ul>
       </div>
       <!-- page -->
@@ -191,7 +255,7 @@ require_once "../connect/db_connect.php";
     <div class="modal_window modalPush">
       <div class="modal">
         <h3 class="modal_title">푸시제목</h3>
-        <input type="text" class="modalPush_titleArea"></input>
+        <input type="text" class="modalPush_titleArea">
         <h3 class="modal_title">푸시내용</h3>
         <textarea class="modal_content"></textarea>
         <div class="array">

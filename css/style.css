@@ -983,8 +983,8 @@ table tbody {
 }
 
 .answerBox{
-  display: none;
   position: relative;
+  top:40px;
   width: 90%;
 }
 
@@ -1018,6 +1018,10 @@ table tbody {
 .userCCPage .match_photo img{
   width: 100px;
   height: 100px;
+}
+
+.answerAddBtn{
+  background-color: red;
 }
 
 /* 파트너페이지 - partnerAddPage */
