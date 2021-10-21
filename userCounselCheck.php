@@ -12,16 +12,17 @@ $row = mysqli_fetch_array($result);
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include('_head.php');?>
+<?php include('_head.php'); ?>
 <!-- head -->
 
 <body>
   <div class="index_wrap userCCPage">
-    <?php $navUser='menu_focus'; include('_nav.php');?>
+    <?php $navUser = 'menu_focus';
+  include('_nav.php'); ?>
     <!-- nav -->
 
     <div class="content_wrap">
-      <?php include('_header.php');?>
+      <?php include('_header.php'); ?>
       <!-- header -->
       <ul class="tab">
         <li><a href="./user.php">유저목록</a></li>
@@ -58,9 +59,30 @@ $row = mysqli_fetch_array($result);
           <p class="li_title">내용</p>
           <textarea class="match_content_inner fwb fs16" readonly><?= $row['content'] ?></textarea>
           <p class="li_title">사진</p>
+          <?php
+        if ($row['image']) {
+          ?>
           <div class="match_photos">
-            <div class="match_photo"><img src="../uploads/inquiry/<?= $row['image_path'] . '/' . $row['image'] ?>"></div>
+            <div class="match_photo">
+              <?php
+              $dir = "../uploads/inquiry/" . $row['u_id'] . '/' . $row['image_path'];
+              if (is_dir($dir)) {
+                if ($dh = opendir($dir)) {
+                  while (($file = readdir($dh)) !== false) {
+                    if ($file != "." && $file != "..") { ?>
+              <img src="<?= $dir . "/" . $file ?>">
+              <?php
+                    }
+                  }
+                  closedir($dh);
+                }
+              }
+              ?>
+            </div>
           </div>
+          <?php
+        }
+        ?>
         </div>
         <!-- match_content -->
         <div class="answerBox">
@@ -85,19 +107,22 @@ $row = mysqli_fetch_array($result);
 
         <div class="modal_window modalAnswer">
           <div class="modal">
-            <h3 class="modal_title">답변내용첨부</h3>
-            <textarea class="modal_content"></textarea>
-            <div class="df">
-              <h3 class="modal_title">이미지첨부</h3>
-              <label for="answer_img">
-                <img src="./images/icon_upload.png" alt="icon_upload">
-              </label>
-              <input type="file" id="answer_img" class="dn">
-            </div>
-            <div class="array">
-              <button class="modal_close">취소</button>
-              <button class="modal_close" onclick="answerAdd();">답변등록</button>
-            </div>
+            <form action="" method="">
+              <h3 class="modal_title">답변내용첨부</h3>
+              <textarea class="modal_content w100"></textarea>
+              <div class="df">
+                <h3 class="modal_title">이미지첨부</h3>
+                <label for="answer_img">
+                  <img src="./images/icon_upload.png" alt="icon_upload">
+                </label>
+                <input type="file" id="answer_img" class="dn">
+                <p class="upload_user"></p>
+              </div>
+              <div class="array">
+                <button type="button" class="modal_close">취소</button>
+                <button type="submit" class="modal_close" onclick="answerAdd();">답변등록</button>
+              </div>
+            </form>
           </div>
         </div>
         <!-- modalCounsel -->
@@ -108,8 +133,8 @@ $row = mysqli_fetch_array($result);
   </div>
   <!--index_wrap -->
 
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js?ver=<?= time() ?>"></script>
+  <script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
 </body>
 
 </html>

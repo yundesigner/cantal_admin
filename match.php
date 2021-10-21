@@ -149,20 +149,14 @@
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <p class="comment_date">2021.08.21</p>
-                  <p class="comment_time">13:07:11</p>
-                </td>
+                <td class="lh18">2021.08.21<br />13:07:11</td>
                 <td class="underbar">김댓글</td>
                 <td class="underbar comment_cnt">내용어쪼고</td>
                 <td><button class="block">차단</button></td>
               </tr>
 
               <tr>
-                <td>
-                  <p class="comment_date">2021.08.21</p>
-                  <p class="comment_time">13:07:11</p>
-                </td>
+                <td class="lh18">2021.08.21<br />13:07:11</td>
                 <td class="underbar">김댓글</td>
                 <td class="underbar comment_cnt">내용어쪼고</td>
                 <td><button class="block cancel">해제</button></td>
@@ -357,8 +351,8 @@
   </div>
   <!--index_wrap -->
 
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js?ver=<?= time() ?>"></script>
+  <script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
   <script>
     // 댓글 카운터
     const comment = document.querySelector("tbody");

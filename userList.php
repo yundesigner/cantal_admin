@@ -59,13 +59,16 @@ require_once "../connect/db_connect.php";
             <select name="status" id="match_select">
               <option value="정회원" <?php if ($row['status'] === "정회원") {
                 echo "selected";
-              } ?>>정회원</option>
+              } ?>>정회원
+              </option>
               <option value="정지회원" <?php if ($row['status'] === "정지회원") {
                 echo "selected";
-              } ?>>정지회원</option>
+              } ?>>정지회원
+              </option>
               <option value="탈퇴회원" <?php if ($row['status'] === "탈퇴회원") {
                 echo "selected";
-              } ?>>탈퇴회원</option>
+              } ?>>탈퇴회원
+              </option>
             </select>
             <button type="submit" class="member_state_submit blue" onclick="return confirm('정보를 수정하시겠습니까?')">수정</button>
         </form>
@@ -152,25 +155,24 @@ require_once "../connect/db_connect.php";
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>전체푸시</td>
-          <td class="underbar">공지사항입니다.</td>
-          <td>2021.08.12</td>
-          <td class="">관리자</td>
-          <td class="detail">
-            <button class="btn_detail" onclick="openModal('PushRO')">보기</button>
-          </td>
-        </tr>
+        <?php
+        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, date_format(date, '%Y-%m-%d') AS date_format FROM cm_app_push AS ap LEFT JOIN cm_user_info AS ui ON ap.u_id = ui.u_id WHERE ui.id = '{$_GET['id']}' OR ap.target = '전체' ORDER BY id DESC";
+        $result = myQuery($sql);
 
-        <tr>
-          <td>개인푸시</td>
-          <td class="underbar">매칭등록이 완료되었습니다.</td>
-          <td>2021.08.12</td>
-          <td class="">관리자</td>
-          <td class="detail">
-            <button class="btn_detail" onclick="openModal('PushRO')">보기</button>
-          </td>
-        </tr>
+        while ($row = mysqli_fetch_array($result)) {
+          ?>
+          <tr>
+            <td><?= $row['target'] ?>푸시</td>
+            <td class="underbar"><?= $row['title'] ?></td>
+            <td><?= $row['date_format'] ?></td>
+            <td class=""><?= $row['a_name'] ?></td>
+            <td class="detail">
+              <button class="btn_detail" onclick="openModal('PushRO')">보기</button>
+            </td>
+          </tr>
+          <?php
+        }
+        ?>
         </tbody>
       </table>
       <div class="page">
@@ -215,27 +217,8 @@ require_once "../connect/db_connect.php";
 </div>
 <!--index_wrap -->
 
-<div class="login">
-  <div class="login_in">
-    <img src="./images/logo.png" alt="logo"></img>
-    <form>
-      <div class="login-form">
-        <input type='text' placeholder='아이디' value='' name='loginId'></input>
-      </div>
-      <div class="login-form">
-        <input type='password' placeholder='비밀번호' value='' name='loginPw'></input>
-      </div>
-      <div class="left">
-        <input type="checkbox" name="checker" id="login" />
-        <label for="login">자동 로그인</label>
-      </div>
-      <div class="blue-btn" onclick="login()">로그인하기</div>
-    </form>
-  </div>
-</div>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js?ver=<?= time() ?>"></script>
+<script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
 </body>
 
 </html>

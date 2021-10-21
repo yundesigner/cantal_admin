@@ -6,7 +6,7 @@
 <!-- head -->
 
 <body>
-  <div class="index_wrap appCommentPage">
+  <div class="index_wrap appPage">
     <?php $navApp='menu_focus'; include('_nav.php');?>
     <!-- nav -->
 
@@ -15,39 +15,31 @@
       <!-- header -->
       <ul class="tab">
         <li><a href="./appmanage.php">배너관리</a></li>
-        <li><a href="./appNotice.php">공지관리</a></li>
+        <li><a href="./appNotice.php" class="on">공지관리</a></li>
         <li><a href="./appPush.php">푸쉬관리</a></li>
-        <li><a href="./appComment.php" class="on">댓글관리</a></li> 
+        <li><a href="./appComment.php">댓글관리</a></li>
       </ul>
 
-      <div class="table_wrap">
+      <div class="table_wrap w70">
+        <button class="btn_counsel">등록</button>
         <table class="match_table">
           <thead>
             <tr>
-              <th>등록시간</th>
-              <th>댓글작성자</th>
-              <th>게시글제목</th>
-              <th class="w50">댓글</th>
-              <th>상세보기</th>
+              <th class="no">NO</th>
+              <th>제목</th>
+              <th class="w126">등록일시</th>
+              <th class="w126">작성자</th>
+              <th class="w126">자세히보기</th> 
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="lh18">2021.08.12<br/>13:07:11</td>
-              <td class="underbar">김댓글</td>
-              <td class="underbar">게시글제목</td>
-              <td>내용어쩌고저쩌고</td>
+              <td>1</td>
+              <td class="underbar"><a href="./appNoticeAdd.php">공지사항입니다.</a></td>
+              <td>2021.08.21</td>
+              <td>홍길동</td>
               <td class="detail">
-                <button class="btn_detail counselMore">보기</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="lh18">2021.08.12<br/>13:07:11</td>
-              <td class="underbar">김댓글</td>
-              <td class="underbar">게시글제목</td>
-              <td>내용어쩌고저쩌고</td>
-              <td class="detail">
-                <button class="btn_detail counselMore">보기</button>
+                <a href="./appNoticeAdd.php" class="btn_detail">보기</a>
               </td>
             </tr>
           </tbody>

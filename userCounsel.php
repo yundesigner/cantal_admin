@@ -184,26 +184,7 @@ require_once "../connect/db_connect.php";
 </div>
 <!--index_wrap -->
 
-<div class="login">
-  <div class="login_in">
-    <img src="./images/logo.png" alt="logo"></img>
-    <form>
-      <div class="login-form">
-        <input type='text' placeholder='아이디' value='' name='loginId'></input>
-      </div>
-      <div class="login-form">
-        <input type='password' placeholder='비밀번호' value='' name='loginPw'></input>
-      </div>
-      <div class="left">
-        <input type="checkbox" name="checker" id="login" />
-        <label for="login">자동 로그인</label>
-      </div>
-      <div class="blue-btn" onclick="login()">로그인하기</div>
-    </form>
-  </div>
-</div>
-
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
 </body>
 
 </html>

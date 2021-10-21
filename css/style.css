@@ -130,16 +130,25 @@ header p {
   width: 80% !important;
 }
 
+.w100 {
+  width: 100% !important;
+}
+
 .fw800{
   font-weight: 800 !important;
 }
 
-.fs16{
+.fs16{ 
   font-size: 16px;
 }
 
 .fwb{
   font-weight: bold;
+}
+
+.lh18{
+  height: 104px;
+  line-height: 18px;
 }
 
 .mt15{
@@ -554,7 +563,7 @@ table tbody {
 }
 
 .match_box {
-  padding: 16px;
+  padding: 16px 0 16px 16px;
   background-color: #fff;
   box-shadow: var(--boxshadow-default);
   border-radius: 5px;
@@ -702,7 +711,7 @@ table tbody {
 
 .match_content_inner {
   margin: 8px 0;
-  width: 100%;
+  width: calc(100% - 16px);
   height: 200px;
   border: 1px solid #ececec;
   box-sizing: border-box;
@@ -716,10 +725,15 @@ table tbody {
 }
 
 .match_photo {
+  display: flex;
   width: 100px;
   height: 100px;
   margin-right: 8px;
   background-color: #ececec;
+}
+
+.match_photo img{
+  margin-right: 10px;
 }
 
 /* 매칭 상세보기 - 댓글 */
@@ -997,6 +1011,15 @@ table tbody {
   margin-left: 16px;
 }
 
+.userCCPage .match_user{
+  width: auto;
+}
+
+.userCCPage .match_photo img{
+  width: 100px;
+  height: 100px;
+}
+
 /* 파트너페이지 - partnerAddPage */
 .partnerAddPage .user_info td{
   color: #999999;
@@ -1042,8 +1065,12 @@ table tbody {
   margin-left: -10px;
 }
 
+.upload_name, .upload_user{
+  font-size: 14px;
+  margin-left:10px;
+}
+
 .upload_name{
-  background-color: red;
   margin: 153px 0 0 5px;
 }
 

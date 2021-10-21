@@ -54,6 +54,7 @@ require_once "../connect/db_connect.php";
                 LEFT JOIN (SELECT u_id, COUNT(u_id) AS count
                            FROM cm_transfer
                            GROUP BY u_id) AS t ON u.id = t.u_id
+                WHERE u.admin = '0'
                 ORDER BY u.id DESC";
         $result = myQuery($sql);
         $pageTotal = mysqli_num_rows($result);
@@ -71,6 +72,7 @@ require_once "../connect/db_connect.php";
                 LEFT JOIN (SELECT u_id, COUNT(u_id) AS count
                            FROM cm_transfer
                            GROUP BY u_id) AS t ON u.id = t.u_id
+                WHERE u.admin = '0'
                 ORDER BY u.id DESC LIMIT {$p}, {$pageNum}";
         $result = myQuery($sql);
 
@@ -82,7 +84,7 @@ require_once "../connect/db_connect.php";
                   LEFT JOIN (SELECT u_id, COUNT(u_id) AS count
                              FROM cm_transfer
                              GROUP BY u_id) AS t ON u.id = t.u_id
-                  WHERE ui.name LIKE '%{$search}%' OR ui.nickname LIKE '%{$search}%' OR ui.phone LIKE '%{$search}%' OR u.email LIKE '%{$search}%' OR ui.status LIKE '%{$search}%'
+                  WHERE u.admin = '0' AND ui.name LIKE '%{$search}%' OR ui.nickname LIKE '%{$search}%' OR ui.phone LIKE '%{$search}%' OR u.email LIKE '%{$search}%' OR ui.status LIKE '%{$search}%'
                   ORDER BY u.id DESC";
           $result = myQuery($sql);
           $pageTotal = mysqli_num_rows($result);
@@ -100,7 +102,7 @@ require_once "../connect/db_connect.php";
                   LEFT JOIN (SELECT u_id, COUNT(u_id) AS count
                              FROM cm_transfer
                              GROUP BY u_id) AS t ON u.id = t.u_id
-                  WHERE ui.name LIKE '%{$search}%' OR ui.nickname LIKE '%{$search}%' OR ui.phone LIKE '%{$search}%' OR u.email LIKE '%{$search}%' OR ui.status LIKE '%{$search}%'
+                  WHERE u.admin = '0' AND ui.name LIKE '%{$search}%' OR ui.nickname LIKE '%{$search}%' OR ui.phone LIKE '%{$search}%' OR u.email LIKE '%{$search}%' OR ui.status LIKE '%{$search}%'
                   ORDER BY u.id DESC LIMIT {$p}, {$pageNum}";
           $result = myQuery($sql);
         }
@@ -203,26 +205,7 @@ require_once "../connect/db_connect.php";
 </div>
 <!--index_wrap -->
 
-<div class="login">
-  <div class="login_in">
-    <img src="./images/logo.png" alt="logo"></img>
-    <form>
-      <div class="login-form">
-        <input type='text' placeholder='아이디' value='' name='loginId'></input>
-      </div>
-      <div class="login-form">
-        <input type='password' placeholder='비밀번호' value='' name='loginPw'></input>
-      </div>
-      <div class="left">
-        <input type="checkbox" name="checker" id="login" />
-        <label for="login">자동 로그인</label>
-      </div>
-      <div class="blue-btn" onclick="login()">로그인하기</div>
-    </form>
-  </div>
-</div>
-
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
 </body>
 
 </html>

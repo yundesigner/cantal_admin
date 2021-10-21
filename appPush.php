@@ -6,7 +6,7 @@
 <!-- head -->
 
 <body>
-  <div class="index_wrap appCommentPage">
+  <div class="index_wrap appPushPage">
     <?php $navApp='menu_focus'; include('_nav.php');?>
     <!-- nav -->
 
@@ -16,38 +16,51 @@
       <ul class="tab">
         <li><a href="./appmanage.php">배너관리</a></li>
         <li><a href="./appNotice.php">공지관리</a></li>
-        <li><a href="./appPush.php">푸쉬관리</a></li>
-        <li><a href="./appComment.php" class="on">댓글관리</a></li> 
+        <li><a href="./appPush.php" class="on">푸쉬관리</a></li>
+        <li><a href="./appComment.php">댓글관리</a></li>
       </ul>
 
-      <div class="table_wrap">
+      <div class="table_wrap mt-17">
         <table class="match_table">
           <thead>
             <tr>
-              <th>등록시간</th>
-              <th>댓글작성자</th>
-              <th>게시글제목</th>
-              <th class="w50">댓글</th>
-              <th>상세보기</th>
+              <th class="no">NO</th>
+              <th>제목</th>
+              <th>등록일시</th>
+              <th>작성자</th>
+              <th>대상자</th>
+              <th>자세히보기</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="lh18">2021.08.12<br/>13:07:11</td>
-              <td class="underbar">김댓글</td>
-              <td class="underbar">게시글제목</td>
-              <td>내용어쩌고저쩌고</td>
+              <td>1</td>
+              <td class="underbar">공지사항입니다.</td>
+              <td>2021.08.12</td>
+              <td>홍길동</td>
+              <td>전체</td>
               <td class="detail">
                 <button class="btn_detail counselMore">보기</button>
               </td>
             </tr>
+            <tr class="counsel_look">
+              <td colspan="6">
+                <textarea>공지사항에 대한 내용입니다.</textarea>
+              </td>
+            </tr>
             <tr>
-              <td class="lh18">2021.08.12<br/>13:07:11</td>
-              <td class="underbar">김댓글</td>
-              <td class="underbar">게시글제목</td>
-              <td>내용어쩌고저쩌고</td>
+              <td>2</td>
+              <td class="underbar">매칭완료되었습니다.</td>
+              <td>2021.08.12</td>
+              <td>홍길동</td>
+              <td>박렌탈</td>
               <td class="detail">
                 <button class="btn_detail counselMore">보기</button>
+              </td>
+            </tr>
+            <tr class="counsel_look">
+              <td colspan="6">
+                <textarea>공지사항에 대한 내용입니다.</textarea>
               </td>
             </tr>
           </tbody>

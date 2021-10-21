@@ -14,10 +14,10 @@
       <?php include('_header.php');?>
       <!-- header -->
       <ul class="tab">
-        <li><a href="./partner.php" class="on">배너관리</a></li>
-        <li><a href="./partnerAdd.php">공지관리</a></li>
-        <li><a href="./partnerAdd.php">푸쉬관리</a></li>
-        <li><a href="./partnerAdd.php">댓글관리</a></li>
+        <li><a href="./appmanage.php" class="on">배너관리</a></li>
+        <li><a href="./appNotice.php">공지관리</a></li>
+        <li><a href="./appPush.php">푸쉬관리</a></li>
+        <li><a href="./appComment.php">댓글관리</a></li>
       </ul>
 
       <div class="table_wrap">
@@ -74,26 +74,7 @@
   </div>
   <!--index_wrap -->
 
-  <div class="login">
-    <div class="login_in">
-      <img src="./images/logo.png" alt="logo"></img>
-      <form>
-        <div class="login-form">
-          <input type='text' placeholder='아이디' value='' name='loginId'></input>
-        </div>
-        <div class="login-form">
-          <input type='password' placeholder='비밀번호' value='' name='loginPw'></input>
-        </div>
-        <div class="left">
-          <input type="checkbox" name="checker" id="login" />
-          <label for="login">자동 로그인</label>
-        </div>
-        <div class="blue-btn" onclick="login()">로그인하기</div>
-      </form>
-    </div>
-  </div>
-
-  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
 </body>
 
 </html>
