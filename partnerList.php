@@ -76,7 +76,6 @@ require_once "../connect/db_connect.php";
           <th>구분</th>
           <th>제목</th>
           <th>메모</th>
-          <th>제품명</th>
           <th>작성자</th>
           <th>양도자</th>
           <th>업무시간</th>
@@ -87,7 +86,6 @@ require_once "../connect/db_connect.php";
           <td>연락</td>
           <td class="underbar"><a href="./partnerAdd.php">제품양도합니다</a></td>
           <td></td>
-          <td>LG스타일러</td>
           <td>홍길동</td>
           <td>박철수</td>
           <td>2021.08.12 13:01</td>
@@ -97,7 +95,6 @@ require_once "../connect/db_connect.php";
           <td>배송완료</td>
           <td class="underbar"><a href="./partnerAdd.php">제품양도합니다</a></td>
           <td></td>
-          <td>LG스타일러</td>
           <td>홍길동</td>
           <td>박철수</td>
           <td>2021.08.12 13:01</td>

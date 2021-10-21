@@ -84,9 +84,15 @@ $row = mysqli_fetch_array($result);
         }
         ?>
       </div>
-      <div class="detail answerAddBtn">
-        <button class="btn_detail" onclick="openModal('Answer')">답변등록</button>
-      </div>
+      <?php
+      if (!$row['reply_date']) {
+        ?>
+        <div class="detail answerAddBtn">
+          <button class="btn_detail" onclick="openModal('Answer')">답변등록</button>
+        </div>
+        <?php
+      }
+      ?>
       <!-- match_content -->
 
       <?php
