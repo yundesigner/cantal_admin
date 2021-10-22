@@ -44,7 +44,7 @@ require_once "../connect/db_connect.php";
         <?php
         $confirm = "'상담을 완료하시겠습니까?'";
         $pageNum = 15;
-        $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format
+        $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                 FROM cm_event
                 ORDER BY id DESC";
         $result = myQuery($sql);
@@ -57,14 +57,14 @@ require_once "../connect/db_connect.php";
         } elseif ($p > $pageTotal) {
           $p = $p - 15;
         }
-        $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format
+        $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                 FROM cm_event
                 ORDER BY id DESC LIMIT {$p}, {$pageNum}";
         $result = myQuery($sql);
 
         if ($search) {
           $pageNum = 15;
-          $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format
+          $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                   FROM cm_event
                   WHERE content LIKE '%{$search}%' OR name LIKE '%{$search}%' OR phone LIKE '%{$search}%'
                   ORDER BY id DESC";
@@ -78,7 +78,7 @@ require_once "../connect/db_connect.php";
           } elseif ($p > $pageTotal) {
             $p = $p - 15;
           }
-          $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format
+          $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                   FROM cm_event
                   WHERE content LIKE '%{$search}%' OR name LIKE '%{$search}%' OR phone LIKE '%{$search}%'
                   ORDER BY id DESC LIMIT {$p}, {$pageNum}";

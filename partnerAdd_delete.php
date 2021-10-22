@@ -27,5 +27,5 @@ $sql = "DELETE FROM cm_partner WHERE id = '{$_GET['id']}'";
 
 $result = myQuery($sql);
 
-echo "<script>window.alert('파트너 삭제가 완료되었습니다.');</script>";
+echo "<script>window.alert('파트너가 삭제되었습니다.');</script>";
 echo "<script>location.href='partner.php';</script>";

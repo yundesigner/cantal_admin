@@ -21,7 +21,6 @@
                         <li class="li_title">제목</li>
                         <li class="li_content mr0">
                             <p>이벤트제목</p>
-                            <p class="li_date">2021.08.12</p>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +52,7 @@
 
                     <div class="btn_wrap">
                         <button class="block orange">삭제</button>
-                        <button class="block" onclick="appNoticeEdit()">수정</button>
+                        <a href="./appNoticeEdit.php" class="a-block">수정</a>
                     </div>
                 </div>
             </div>
@@ -64,8 +63,8 @@
     </div>
     <!--index_wrap -->
 
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js?ver=<?= time() ?>"></script>
+    <script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
 </body>
 
 </html>

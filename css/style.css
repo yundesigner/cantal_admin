@@ -134,6 +134,10 @@ header p {
   width: 100% !important;
 }
 
+.w400{
+  width: 400px;
+}
+
 .fw800{
   font-weight: 800 !important;
 }
@@ -1025,6 +1029,13 @@ table tbody {
   background-color: red;
 }
 
+.a-black{
+  display: block !important;
+  color:#fff;
+  font-size: 14px;
+  font-weight: 100 !important;
+}
+
 /* 파트너페이지 - partnerAddPage */
 .partnerAddPage .user_info td{
   color: #999999;
@@ -1103,6 +1114,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding-top: 20px;
 }
 
+.a-edit{
+  text-align: center;
+  font-size: 14px;
+  padding-top:3px;
+}
+
 /* 앱 배너 페이지 - appBannerPage */
 
 .appBannerPage .match_person .match_user{
@@ -1150,6 +1167,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: #333333;
   padding: 2px 16px 4px 16px;
   margin-top: 14px;
+}
+
+.a-block{
+  display: inline-block;
+  text-align: center;
+  width: 58px;
+  height: 24px;
+  font-weight: 200;
+  font-size: 13px;
+  color: #fff;
+  background-color: #565FA8;
+  border-radius: 15px;
+  border: none;
+  margin-top: 14px;
+  margin-left: 16px;
+  padding-top: 4px;
 }
 
 .appBannerPage .btn_wrap .block:last-child{

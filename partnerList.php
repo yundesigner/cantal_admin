@@ -82,33 +82,107 @@ require_once "../connect/db_connect.php";
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>연락</td>
-          <td class="underbar"><a href="./partnerAdd.php">제품양도합니다</a></td>
-          <td></td>
-          <td>홍길동</td>
-          <td>박철수</td>
-          <td>2021.08.12 13:01</td>
-        </tr>
+        <?php
+        $pageNum = 10;
+        $sql = "SELECT bs.*, t.title,
+                       (SELECT name FROM cm_user_info AS ui WHERE t.u_id = ui.u_id) AS t_name,
+                       (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
+                       DATE_FORMAT(bs.date, '%Y.%m.%d %H:%i') AS date_format
+                FROM cm_business_status bs 
+                JOIN cm_matching m ON bs.m_id = m.id
+                LEFT JOIN cm_partner p ON m.p_id = p.id
+                LEFT JOIN cm_transfer t ON m.t_id = t.id
+                WHERE p.id = '{$_GET['id']}'
+                ORDER BY bs.id DESC";
+        $result = myQuery($sql);
+        $pageTotal = mysqli_num_rows($result);
+        $p = $_GET['p'];
+        if (empty($p)) {
+          $p = 0;
+        } elseif ($p < 0) {
+          $p = 0;
+        } elseif ($p > $pageTotal) {
+          $p = $p - 10;
+        }
+        $sql = "SELECT bs.*, t.title,
+                       (SELECT name FROM cm_user_info AS ui WHERE t.u_id = ui.u_id) AS t_name,
+                       (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
+                       DATE_FORMAT(bs.date, '%Y.%m.%d %H:%i') AS date_format
+                FROM cm_business_status bs 
+                JOIN cm_matching m ON bs.m_id = m.id
+                LEFT JOIN cm_partner p ON m.p_id = p.id
+                LEFT JOIN cm_transfer t ON m.t_id = t.id
+                WHERE p.id = '{$_GET['id']}'
+                ORDER BY bs.id DESC LIMIT {$p}, {$pageNum}";
+        $result = myQuery($sql);
 
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
         <tr>
-          <td>배송완료</td>
-          <td class="underbar"><a href="./partnerAdd.php">제품양도합니다</a></td>
-          <td></td>
-          <td>홍길동</td>
-          <td>박철수</td>
-          <td>2021.08.12 13:01</td>
+          <td><?= $row['category'] ?></td>
+          <td class="underbar"><a href="./partnerAdd.php"><?= $row['title'] ?></a></td>
+          <td><?= $row['memo'] ?></td>
+          <td><?= $row['t_name'] ?></td>
+          <td><?= $row['m_name'] ?></td>
+          <td><?= $row['date_format'] ?></td>
         </tr>
+          <?php
+        }
+        ?>
         </tbody>
       </table>
       <div class="page">
         <ul>
-          <li class="page-left">&lt;</li>
-          <li class="page-on">1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li class="page-right">&gt;</li>
+          <a href='/admin/partnerList.php?id=<?= $_GET['id'] ?>&p=<?php
+          if ($p <= 0) {
+            echo $p;
+          } else {
+            echo $p - 10;
+          }
+          ?>'>
+            <li class="page-left">&lt;</li>
+          </a>
+          <?php
+          $id = $_GET['id'];
+          $pages = ceil($pageTotal / $pageNum);
+          $pageGroup = ceil($pages / 10);
+          $pageCount = ceil(ceil($pages / $pageGroup) / 10) * 10;
+          $pageEnd = ceil($pageTotal / 100) * 100 - 10;
+
+          for ($j = 1; $j < $pageGroup + 1; $j++) {
+            if ($p < 100) {
+              $Count = 1;
+            } elseif ($p <= $pageEnd - (100 * ($j - 1))) {
+              $Count = 1 + (10 * $pageGroup) - (10 * $j);
+            }
+          }
+
+          for ($i = $Count; $i - $Count < $pageCount; $i++) {
+            $nextPage = $pageNum * ($i - 1);
+            $activePage = $_GET['p'] / 10 + 1;
+            $className = '';
+            if ($activePage == $i) {
+              $className = 'page-on';
+            }
+            echo "<a href='$_SERVER[PHP_SELF]?id=$id&p=$nextPage";
+
+            echo "'><li class='$className'>$i</li></a>";
+
+            if ($i >= $pages) {
+              $i = $pages;
+              break;
+            }
+          }
+          ?>
+          <a href='/admin/partnerList.php?id=<?= $_GET['id'] ?>&p=<?php
+          if ($p + 10 >= $pageTotal) {
+            echo $p;
+          } else {
+            echo $p + 10;
+          }
+          ?>'>
+            <li class="page-right">&gt;</li>
+          </a>
         </ul>
       </div>
       <!-- page -->

@@ -45,14 +45,22 @@ if (!is_dir($uploads_dir)) {
   }
 }
 
-$sql = "UPDATE cm_inquiry
-        SET ua_id = '1',
-            reply_content = '{$_POST['reply_content']}',
-            reply_image = '{$image}',
-            reply_date = NOW()
-        WHERE id = '{$_GET['id']}'";
+if ($row['reply_date']) {
+  $sql = "UPDATE cm_inquiry
+          SET ua_id = '1',
+              reply_content = '{$_POST['reply_content']}',
+              reply_image = '{$image}'
+          WHERE id = '{$_GET['id']}'";
+} else {
+  $sql = "UPDATE cm_inquiry
+          SET ua_id = '1',
+              reply_content = '{$_POST['reply_content']}',
+              reply_image = '{$image}',
+              reply_date = NOW()
+          WHERE id = '{$_GET['id']}'";
+}
 
 $result = myQuery($sql);
 
-  echo "<script>window.alert('답변 등록이 완료되었습니다.');</script>";
-  echo "<script>location.href='userCounselCheck.php?id={$_GET['id']}';</script>";
+echo "<script>window.alert('답변이 등록되었습니다.');</script>";
+echo "<script>location.href='userCounselCheck.php?id={$_GET['id']}';</script>";

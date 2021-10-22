@@ -47,7 +47,7 @@ require_once "../connect/db_connect.php";
         <tbody>
         <?php
         $pageNum = 15;
-        $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format FROM cm_inquiry ORDER BY id DESC";
+        $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format FROM cm_inquiry ORDER BY id DESC";
         $result = myQuery($sql);
         $pageTotal = mysqli_num_rows($result);
         $p = $_GET['p'];
@@ -58,12 +58,12 @@ require_once "../connect/db_connect.php";
         } elseif ($p > $pageTotal) {
           $p = $p - 15;
         }
-        $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format FROM cm_inquiry ORDER BY id DESC LIMIT {$p}, {$pageNum}";
+        $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format FROM cm_inquiry ORDER BY id DESC LIMIT {$p}, {$pageNum}";
         $result = myQuery($sql);
 
         if ($search) {
           $pageNum = 15;
-          $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format
+          $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                   FROM cm_inquiry
                   WHERE name LIKE '%{$search}%' OR title LIKE '%{$search}%'
                   ORDER BY id DESC";
@@ -77,7 +77,7 @@ require_once "../connect/db_connect.php";
           } elseif ($p > $pageTotal) {
             $p = $p - 15;
           }
-          $sql = "SELECT *, date_format(date, '%Y-%m-%d') AS date_format
+          $sql = "SELECT *, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                   FROM cm_inquiry
                   WHERE name LIKE '%{$search}%' OR title LIKE '%{$search}%'
                   ORDER BY id DESC LIMIT {$p}, {$pageNum}";

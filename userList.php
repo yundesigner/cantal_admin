@@ -157,11 +157,11 @@ require_once "../connect/db_connect.php";
         <tbody>
         <?php
         $p_pageNum = 2;
-        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, date_format(date, '%Y-%m-%d') AS date_format
+        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                 FROM cm_app_push AS ap
                 LEFT JOIN cm_user_info AS ui ON ap.u_id = ui.u_id
                 WHERE ui.id = '{$_GET['id']}' OR ap.target = '전체'
-                ORDER BY id DESC";
+                ORDER BY ap.id DESC";
         $result = myQuery($sql);
         $p_pageTotal = mysqli_num_rows($result);
         $p_p = $_GET['p_p'];
@@ -172,11 +172,11 @@ require_once "../connect/db_connect.php";
         } elseif ($p_p > $p_pageTotal) {
           $p_p = $p_p - 2;
         }
-        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, date_format(date, '%Y-%m-%d') AS date_format
+        $sql = "SELECT ap.*, (SELECT name FROM cm_user_info WHERE u_id = ap.ua_id) AS a_name, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
                 FROM cm_app_push AS ap
                 LEFT JOIN cm_user_info AS ui ON ap.u_id = ui.u_id
                 WHERE ui.id = '{$_GET['id']}' OR ap.target = '전체'
-                ORDER BY id DESC LIMIT {$p_p}, {$p_pageNum}";
+                ORDER BY ap.id DESC LIMIT {$p_p}, {$p_pageNum}";
         $result = myQuery($sql);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -268,7 +268,7 @@ require_once "../connect/db_connect.php";
     <div class="modal_window modalPushRO">
       <div class="modal">
         <h3 class="modal_title">푸시제목</h3>
-        <input type="text" class="modalPush_titleArea" readonly></input>
+        <input type="text" class="modalPush_titleArea" readonly>
         <h3 class="modal_title">푸시내용</h3>
         <textarea class="modal_content" readonly></textarea>
         <button class="modal_close">닫기</button>

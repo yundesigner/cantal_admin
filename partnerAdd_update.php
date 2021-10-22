@@ -65,5 +65,5 @@ if ($_FILES['upload']['tmp_name']) {
   $result = myQuery($sql);
 }
 
-echo "<script>window.alert('파트너 수정이 완료되었습니다.');</script>";
+echo "<script>window.alert('파트너가 수정되었습니다.');</script>";
 echo "<script>location.href='partner.php';</script>";

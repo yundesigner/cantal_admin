@@ -28,5 +28,5 @@ $sql = "INSERT INTO cm_partner
 
 $result = myQuery($sql);
 
-echo "<script>window.alert('파트너 등록이 완료되었습니다.');</script>";
+echo "<script>window.alert('파트너가 등록되었습니다.');</script>";
 echo "<script>location.href='partner.php';</script>";

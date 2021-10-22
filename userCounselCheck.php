@@ -1,7 +1,7 @@
 <?php
 require_once "../connect/db_connect.php";
 
-$sql = "SELECT i.*, ui.*, date_format(date, '%Y-%m-%d') AS date_format
+$sql = "SELECT i.*, ui.*, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
         FROM cm_inquiry AS i
         JOIN cm_user_info AS ui ON i.u_id = ui.u_id
         WHERE i.id = '{$_GET['id']}'";
@@ -123,7 +123,8 @@ $row = mysqli_fetch_array($result);
             </div>
           </div>
           <div class="btn_wrap">
-            <button class="block" onclick="answerRemove()">답변삭제</button>
+<!--            <button class="block" onclick="answerRemove()">답변삭제</button>-->
+            <button class="block"><a href="userCounselCheck_delete.php?id=<?= $_GET['id'] ?>" class="a-black">답변삭제</a></button>
             <button class="block" onclick="openModal('Answer')">답변수정</button>
           </div>
         </div>
