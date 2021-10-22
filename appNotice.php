@@ -64,7 +64,7 @@ require_once "../connect/db_connect.php";
           ?>
             <tr>
               <td><?= $row['id'] ?></td>
-              <td class="underbar"><a href="./appNoticeAdd.php"><?= $row['title'] ?></a></td>
+              <td class="underbar"><a href="./appNoticeAdd.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></td>
               <td><?= $row['date_format'] ?></td>
               <td><?= $row['name'] ?></td>
               <td class="detail">

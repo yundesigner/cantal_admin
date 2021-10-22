@@ -117,8 +117,8 @@ require_once "../connect/db_connect.php";
 //          }
           ?>
           <tr>
-            <td><?= $row['id'] ?></td>
-            <td class="underbar"><a href="./userList.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></td>
+            <td><?= $row['u_id'] ?></td>
+            <td class="underbar"><a href="./userList.php?id=<?= $row['u_id'] ?>"><?= $row['name'] ?></a></td>
             <td><?= $row['nickname'] ?></td>
             <td><?= $row['phone'] ?></td>
             <td><?= $row['email'] ?></td>

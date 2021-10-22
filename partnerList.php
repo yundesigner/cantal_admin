@@ -64,7 +64,7 @@ require_once "../connect/db_connect.php";
     </div>
 
     <div class="array">
-      <button class="modal_close del"><a href="partnerAdd_delete.php?id=<?= $_GET['id'] ?>">삭제</a></button>
+      <button class="modal_close del"><a href="partnerAdd_delete.php?id=<?= $_GET['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a></button>
       <button class="modal_close"><a href="partnerAdd.php?id=<?= $_GET['id'] ?>">수정</a></button>
     </div>
 

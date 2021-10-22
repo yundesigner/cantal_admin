@@ -37,7 +37,7 @@ require_once "../connect/db_connect.php";
         <tbody>
         <?php
         $pageNum = 5;
-        $sql = "SELECT r.*, ui.name,
+        $sql = "SELECT r.*, ui.id, ui.name,
                 (SELECT title FROM cm_transfer AS t WHERE r.t_id = t.id) AS title
                 FROM cm_reply AS r
                 JOIN cm_user_info AS ui ON r.u_id = ui.u_id
@@ -52,7 +52,7 @@ require_once "../connect/db_connect.php";
         } elseif ($p > $pageTotal) {
           $p = $p - 5;
         }
-        $sql = "SELECT r.*, ui.name,
+        $sql = "SELECT r.*, ui.id, ui.name,
                 (SELECT title FROM cm_transfer AS t WHERE r.t_id = t.id) AS title
                 FROM cm_reply AS r
                 JOIN cm_user_info AS ui ON r.u_id = ui.u_id
@@ -64,11 +64,11 @@ require_once "../connect/db_connect.php";
         ?>
         <tr>
           <td class="lh18"><?= date_format($date,"Y.m.d") ?><br /><?= date_format($date,"H:i:s") ?></td>
-          <td class="underbar"><?= $row['name'] ?></td>
-          <td class="underbar"><?= $row['title'] ?></td>
+          <td class="underbar"><a href="userList.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></td>
+          <td class="underbar"><a href="match.php?id=<?= $row['t_id'] ?>"><?= $row['title'] ?></a></td>
           <td><?= $row['content'] ?></td>
           <td class="detail">
-            <button class="btn_detail counselMore">보기</button>
+            <a href="match.php?id=<?= $row['t_id'] ?>" class="btn_detail counselMore">보기</a>
           </td>
         </tr>
           <?php

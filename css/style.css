@@ -122,6 +122,10 @@ header p {
 }
 
 /* DECORATION */
+.pf{
+  position: fixed !important;
+}
+
 .left {
   text-align: left;
 }
@@ -1034,6 +1038,7 @@ table tbody {
   color:#fff;
   font-size: 14px;
   font-weight: 100 !important;
+  padding-top:4px !important;
 }
 
 /* 파트너페이지 - partnerAddPage */
@@ -1214,4 +1219,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .appBannerPage .df input[type="date"]{
   padding-left:8px;
+}
+
+/* 앱 댓글 페이지 - appCommentPage */
+.counselMore{
+  display: block;
+  color:#fff;
 }

@@ -4,7 +4,7 @@ require_once "../connect/db_connect.php";
 $sql = "SELECT n.*, ui.name, DATE_FORMAT(date, '%Y.%m.%d') AS date_format
         FROM cm_notice AS n
         JOIN cm_user_info AS ui ON n.ua_id = ui.u_id
-        WHERE category = '배너' AND n.id = '{$_GET['id']}'";
+        WHERE n.id = '{$_GET['id']}'";
 $result = myQuery($sql);
 $row = mysqli_fetch_array($result);
 
@@ -79,8 +79,8 @@ $end_date = date_create($row['end_date']);
         </a>
 
         <div class="btn_wrap">
-          <button class="block orange">삭제</button>
-          <a href="./appBannerEdit.php" class="a-block">수정</a>
+          <a href="./appBanner_delete.php?id=<?= $_GET['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');"><button class="block orange">삭제</button></a>
+          <a href="./appBannerEdit.php?id=<?= $_GET['id'] ?>" class="a-block">수정</a>
         </div>
       </div>
     </div>

@@ -42,6 +42,9 @@ const counselToggle = document.querySelectorAll('.counselMore');
 
 for (var i = 0; i < counselToggle.length; i++) {
   counselToggle[i].addEventListener('click', function () {
+    console.log($(counselToggle[i]).attr('data-id'));
+
+
     const parentTr = $(this).parents('tr')
     parentTr.next('.counsel_look').css('display', 'table-row')
   })
@@ -72,6 +75,12 @@ function answerAdd() {
 //   // answerAddBtn.style.display = 'block';
 // }
 
+// 앱관리/배너관리
+// document.getElementById('move-appbanner').addEventListener('click', function () {
+//   console.log('ddd');
+//   $(location).attr('href', "https://cantal.loplab.kr/admin/appBanner.php");
+// })
+
 // // 앱관리/배너관리 - 수정
 // const bannerWrap = document.querySelector('.banner_wrap');
 
@@ -88,16 +97,16 @@ function answerAdd() {
 //   $('<div class="match_form banner_in"><h2 class="content_title">배너관리</h2><div class="match_title match_box"><ul><li class="li_title">제목</li><li class="li_content mr0"><p>이벤트제목</p><p class="li_date">2021.08.12</p></li></ul></div><div class="match_person"><div class="match_user"><ul class="match_user_writer match_box"><li class="li_title">작성자</li><li class="li_content mr0">홍길동</li></ul><ul class="match_user_writer match_box"><li class="li_title">작성일</li><li class="li_content mr0">2021.08.12</li></ul><ul class="match_user_writer match_box"><li class="li_title">기간</li><li class="li_content mr0">2021.08.12~2021.08.18</li></ul></div><div class="match_partner match_box dn"></div></div><div class="df"><div class="match_content match_box"><p class="li_title">이미지</p><div class="img_area"></div></div><div class="match_content match_box"><p class="li_title">내용</p><textarea class="match_content_inner fwb fs16" readonly></textarea></div></div><div class="df_jsb"><a href="./appmanage.php"><button class="block black">목록보기</button></a><div class="btn_wrap"><button class="block orange">삭제</button><button class="block" onclick="appBannerEdit()">수정</button></div></div><div class="modal_window modalAnswer"><div class="modal"><h3 class="modal_title">답변내용첨부</h3><textarea class="modal_content"></textarea><div class="df"><h3 class="modal_title">이미지첨부</h3><label for="answer_img"><img src="./images/icon_upload.png" alt="icon_upload"></label><input type="file" id="answer_img" class="dn"></input></div><div class="array"><button class="modal_close">취소</button><button class="modal_close" onclick="answerAdd();">답변등록</button></div></div></div></div>').appendTo(bannerWrap);
 // }
 
-// 앱관리/공지사항관리 - 수정
-function appNoticeEdit(){
-  const appBanner = document.querySelector('.banner_in');
-  appBanner.remove();
-  $('<div class="match_form banner_submit"><h2 class="content_title">공지사항 등록하기</h2><div class="match_title match_box"><ul><li class="li_title">제목</li><li class="li_content mr0"><input type="text"></input></li></ul></div><div class="match_content match_box"><p class="li_title mb15">내용</p><textarea class="match_content_inner fwb fs16"></textarea></div><div class="df_jsb"><a href="./appNotice.php"><button class="block black">목록보기</button></a><div class="btn_wrap"><button class="block" onclick="appNoticeSubmit()">등록</button></div></div></div>').appendTo(bannerWrap);
-}
+// // 앱관리/공지사항관리 - 수정
+// function appNoticeEdit() {
+//   const appBanner = document.querySelector('.banner_in');
+//   appBanner.remove();
+//   $('<div class="match_form banner_submit"><h2 class="content_title">공지사항 등록하기</h2><div class="match_title match_box"><ul><li class="li_title">제목</li><li class="li_content mr0"><input type="text"></input></li></ul></div><div class="match_content match_box"><p class="li_title mb15">내용</p><textarea class="match_content_inner fwb fs16"></textarea></div><div class="df_jsb"><a href="./appNotice.php"><button class="block black">목록보기</button></a><div class="btn_wrap"><button class="block" onclick="appNoticeSubmit()">등록</button></div></div></div>').appendTo(bannerWrap);
+// }
 
-// 앱관리/공지사항관리 - 등록
-function appNoticeSubmit() {
-  const bannerSubmit = document.querySelector('.banner_submit');
-  bannerSubmit.remove();
-  $('<div class="match_form banner_in"><h2 class="content_title">공지사항</h2><div class="match_title match_box"><ul><li class="li_title">제목</li><li class="li_content mr0"><p>이벤트제목</p><p class="li_date">2021.08.12</p></li></ul></div><div class="match_person"><div class="match_user"><ul class="match_user_writer match_box"><li class="li_title">작성자</li><li class="li_content mr0">관리자</li></ul><ul class="match_user_writer match_box"><li class="li_title">작성일</li><li class="li_content mr0">2021.08.12</li></ul></div><div class="match_partner match_box dn"></div></div><div class="match_content match_box"><p class="li_title mb15">내용</p><textarea class="match_content_inner fwb fs16" readonly></textarea></div><div class="df_jsb"><a href="./appNotice.php"><button class="block black">목록보기</button></a><div class="btn_wrap"><button class="block orange">삭제</button><button class="block" onclick="appNoticeEdit()">수정</button></div></div></div>').appendTo(bannerWrap);
-}
+// // 앱관리/공지사항관리 - 등록
+// function appNoticeSubmit() {
+//   const bannerSubmit = document.querySelector('.banner_submit');
+//   bannerSubmit.remove();
+//   $('<div class="match_form banner_in"><h2 class="content_title">공지사항</h2><div class="match_title match_box"><ul><li class="li_title">제목</li><li class="li_content mr0"><p>이벤트제목</p><p class="li_date">2021.08.12</p></li></ul></div><div class="match_person"><div class="match_user"><ul class="match_user_writer match_box"><li class="li_title">작성자</li><li class="li_content mr0">관리자</li></ul><ul class="match_user_writer match_box"><li class="li_title">작성일</li><li class="li_content mr0">2021.08.12</li></ul></div><div class="match_partner match_box dn"></div></div><div class="match_content match_box"><p class="li_title mb15">내용</p><textarea class="match_content_inner fwb fs16" readonly></textarea></div><div class="df_jsb"><a href="./appNotice.php"><button class="block black">목록보기</button></a><div class="btn_wrap"><button class="block orange">삭제</button><button class="block" onclick="appNoticeEdit()">수정</button></div></div></div>').appendTo(bannerWrap);
+// }
