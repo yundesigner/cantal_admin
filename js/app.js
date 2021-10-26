@@ -42,11 +42,8 @@ const counselToggle = document.querySelectorAll('.counselMore');
 
 for (var i = 0; i < counselToggle.length; i++) {
   counselToggle[i].addEventListener('click', function () {
-    console.log($(counselToggle[i]).attr('data-id'));
-
-
     const parentTr = $(this).parents('tr')
-    parentTr.next('.counsel_look').css('display', 'table-row')
+    parentTr.next('.counsel_look').toggleClass('dtr')
   })
 }
 

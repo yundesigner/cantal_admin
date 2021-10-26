@@ -49,7 +49,7 @@ require_once "../connect/db_connect.php";
         <?php
         $pageNum = 15;
         $sql = "SELECT * FROM
-                (SELECT t.id, ui.name, t.product_name, t.block,
+                (SELECT t.id, t.u_id, ui.name, t.product_name, t.block,
                 DATE_FORMAT(t.date, '%Y.%m.%d') AS date_format,
                 (SELECT COUNT(*) FROM cm_transfer_report WHERE t.id = t_id) AS count
                 FROM cm_transfer AS t
@@ -66,7 +66,7 @@ require_once "../connect/db_connect.php";
           $p = $p - 15;
         }
         $sql = "SELECT * FROM
-                (SELECT t.id, ui.name, t.product_name, t.block,
+                (SELECT t.id, t.u_id, ui.name, t.product_name, t.block,
                 DATE_FORMAT(t.date, '%Y.%m.%d') AS date_format,
                 (SELECT COUNT(*) FROM cm_transfer_report WHERE t.id = t_id) AS count
                 FROM cm_transfer AS t
@@ -77,7 +77,7 @@ require_once "../connect/db_connect.php";
         if ($search) {
           $pageNum = 15;
           $sql = "SELECT * FROM
-                  (SELECT t.id, ui.name, t.product_name, t.block,
+                  (SELECT t.id, t.u_id, ui.name, t.product_name, t.block,
                   DATE_FORMAT(t.date, '%Y.%m.%d') AS date_format,
                   (SELECT COUNT(*) FROM cm_transfer_report WHERE t.id = t_id) AS count
                   FROM cm_transfer AS t
@@ -95,7 +95,7 @@ require_once "../connect/db_connect.php";
             $p = $p - 15;
           }
           $sql = "SELECT * FROM
-                  (SELECT t.id, ui.name, t.product_name, t.block,
+                  (SELECT t.id, t.u_id, ui.name, t.product_name, t.block,
                   DATE_FORMAT(t.date, '%Y.%m.%d') AS date_format,
                   (SELECT COUNT(*) FROM cm_transfer_report WHERE t.id = t_id) AS count
                   FROM cm_transfer AS t
@@ -109,7 +109,7 @@ require_once "../connect/db_connect.php";
           ?>
           <tr>
             <td><?= $row['id'] ?></td>
-            <td class="underbar"><?= $row['name'] ?></td>
+            <td class="underbar"><a href="./userList.php?id=<?= $row['u_id'] ?>"><?= $row['name'] ?></a></td>
             <td><?= $row['date_format'] ?></td>
             <td><?= $row['product_name'] ?></td>
             <td><?php
@@ -137,7 +137,7 @@ require_once "../connect/db_connect.php";
       </table>
       <div class="page">
         <ul>
-          <a href='/admin/index.php?p=<?php
+          <a href='/admin/transfer.php?p=<?php
           if ($p <= 0) {
             echo $p;
           } else {
@@ -186,7 +186,7 @@ require_once "../connect/db_connect.php";
             }
           }
           ?>
-          <a href='/admin/index.php?p=<?php
+          <a href='/admin/transfer.php?p=<?php
           if ($p + 15 >= $pageTotal) {
             echo $p;
           } else {

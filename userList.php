@@ -94,13 +94,13 @@ require_once "../connect/db_connect.php";
         </thead>
         <tbody>
         <?php
-        $a_pageNum = 2;
-        $sql = "SELECT '게시글작성' AS category, t.title, t.date, ui.name,
+        $a_pageNum = 5;
+        $sql = "SELECT '게시글작성' AS category, t.id, t.title, t.date, ui.name,
                 (SELECT COUNT(*) FROM cm_reply WHERE t_id = t.id) AS count
                 FROM cm_transfer AS t
                 JOIN cm_user_info AS ui ON t.u_id = ui.u_id AND ui.u_id = '{$_GET['id']}'
                 UNION ALL
-                SELECT '댓글' AS category, t.title, r.date, (SELECT name FROM cm_user_info WHERE u_id =  t.u_id) AS name,
+                SELECT '댓글' AS category, t.id, t.title, r.date, (SELECT name FROM cm_user_info WHERE u_id =  t.u_id) AS name,
                 (SELECT COUNT(*) FROM cm_reply WHERE t_id = t.id) AS count
                 FROM cm_reply AS r
                 JOIN cm_transfer AS t ON r.t_id = t.id
@@ -114,14 +114,14 @@ require_once "../connect/db_connect.php";
         } elseif ($a_p < 0) {
           $a_p = 0;
         } elseif ($a_p > $a_pageTotal) {
-          $a_p = $a_p - 2;
+          $a_p = $a_p - 5;
         }
-        $sql = "SELECT '게시글작성' AS category, t.title, t.date, ui.name,
+        $sql = "SELECT '게시글작성' AS category, t.id, t.title, t.date, ui.name,
                 (SELECT COUNT(*) FROM cm_reply WHERE t_id = t.id) AS count
                 FROM cm_transfer AS t
                 JOIN cm_user_info AS ui ON t.u_id = ui.u_id AND ui.u_id = '{$_GET['id']}'
                 UNION ALL
-                SELECT '댓글' AS category, t.title, r.date, (SELECT name FROM cm_user_info WHERE u_id =  t.u_id) AS name,
+                SELECT '댓글' AS category, t.id, t.title, r.date, (SELECT name FROM cm_user_info WHERE u_id =  t.u_id) AS name,
                 (SELECT COUNT(*) FROM cm_reply WHERE t_id = t.id) AS count
                 FROM cm_reply AS r
                 JOIN cm_transfer AS t ON r.t_id = t.id
@@ -134,12 +134,12 @@ require_once "../connect/db_connect.php";
           ?>
           <tr>
             <td><?= $row['category'] ?></td>
-            <td class="underbar"><?= $row['title'] ?></td>
+            <td class="underbar"><a href="./transferDetail.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></td>
             <td><?= date_format($date, 'Y.m.d') ?></td>
             <td><?= $row['name'] ?></td>
             <td><?= $row['count'] ?></td>
             <td class="detail">
-              <button class="btn_detail goToMatch">보기</button>
+              <a href="./transferDetail.php?id=<?= $row['id'] ?>" class="btn_detail">보기</a>
             </td>
           </tr>
           <?php
@@ -156,7 +156,7 @@ require_once "../connect/db_connect.php";
             if ($a_p <= 0) {
               echo $a_p;
             } else {
-              echo $a_p - 2;
+              echo $a_p - 5;
             }
             ?>'>
               <li class="page-left">&lt;</li>
@@ -166,19 +166,19 @@ require_once "../connect/db_connect.php";
             $a_pages = ceil($a_pageTotal / $a_pageNum);
             $a_pageGroup = ceil($a_pages / 10);
             $a_pageCount = ceil(ceil($a_pages / $a_pageGroup) / 10) * 10;
-            $a_pageEnd = ceil($a_pageTotal / 20) * 20 - 2;
+            $a_pageEnd = ceil($a_pageTotal / 50) * 50 - 5;
 
             for ($j = 1; $j < $a_pageGroup + 1; $j++) {
-              if ($a_p < 20) {
+              if ($a_p < 50) {
                 $a_Count = 1;
-              } elseif ($a_p <= $a_pageEnd - (20 * ($j - 1))) {
+              } elseif ($a_p <= $a_pageEnd - (50 * ($j - 1))) {
                 $a_Count = 1 + (10 * $a_pageGroup) - (10 * $j);
               }
             }
 
             for ($i = $a_Count; $i - $a_Count < $a_pageCount; $i++) {
               $a_nextPage = $a_pageNum * ($i - 1);
-              $a_activePage = $_GET['a_p'] / 2 + 1;
+              $a_activePage = $_GET['a_p'] / 5 + 1;
               $className = '';
               if ($a_activePage == $i) {
                 $className = 'page-on';
@@ -194,10 +194,10 @@ require_once "../connect/db_connect.php";
             }
             ?>
             <a href='/admin/userList.php?id=<?= $_GET['id'] ?>&a_p=<?php
-            if ($a_p + 2 >= $a_pageTotal) {
+            if ($a_p + 5 >= $a_pageTotal) {
               echo $a_p;
             } else {
-              echo $a_p + 2;
+              echo $a_p + 5;
             }
             ?>'>
               <li class="page-right">&gt;</li>
@@ -265,7 +265,7 @@ require_once "../connect/db_connect.php";
           ?>
           <tr>
             <td><?= $row['target'] ?>푸시</td>
-            <td class="underbar"><?= $row['title'] ?></td>
+            <td><?= $row['title'] ?></td>
             <td><?= $row['date_format'] ?></td>
             <td class=""><?= $row['a_name'] ?></td>
             <td class="detail">
@@ -276,7 +276,7 @@ require_once "../connect/db_connect.php";
           <div class="modal_window modal<?= $row['id'] ?> pf">
             <div class="modal">
               <h3 class="modal_title">푸시제목</h3>
-              <input type="text" class="modalPush_titleArea" value="<?= $row['id'] ?>" readonly>
+              <input type="text" class="modalPush_titleArea" value="<?= $row['title'] ?>" readonly>
               <h3 class="modal_title">푸시내용</h3>
               <textarea class="modal_content" readonly><?= $row['content'] ?></textarea>
               <button class="modal_close">닫기</button>

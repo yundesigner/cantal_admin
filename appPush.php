@@ -65,7 +65,7 @@ require_once "../connect/db_connect.php";
         while ($row = mysqli_fetch_array($result)) {
           ?>
           <tr>
-            <td><?= $row['id'] ?></td>
+            <td class="data-id"><?= $row['id'] ?></td>
             <td><?= $row['title'] ?></td>
             <td><?= $row['date_format'] ?></td>
             <td><?= $row['a_name'] ?></td>
@@ -76,7 +76,7 @@ require_once "../connect/db_connect.php";
                 echo $row['u_name'];
               } ?></td>
             <td class="detail">
-              <button class="btn_detail counselMore" data-id=<?= $row['id'] ?>>보기</button>
+              <button class="btn_detail counselMore">보기</button>
             </td>
           </tr>
           <tr class="counsel_look">

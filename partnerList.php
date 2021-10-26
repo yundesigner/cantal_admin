@@ -84,7 +84,7 @@ require_once "../connect/db_connect.php";
         <tbody>
         <?php
         $pageNum = 10;
-        $sql = "SELECT bs.*, t.title,
+        $sql = "SELECT bs.*, t.id AS t_id, t.title,
                        (SELECT name FROM cm_user_info AS ui WHERE t.u_id = ui.u_id) AS t_name,
                        (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
                        DATE_FORMAT(bs.date, '%Y.%m.%d %H:%i') AS date_format
@@ -104,7 +104,7 @@ require_once "../connect/db_connect.php";
         } elseif ($p > $pageTotal) {
           $p = $p - 10;
         }
-        $sql = "SELECT bs.*, t.title,
+        $sql = "SELECT bs.*, t.id AS t_id, t.title,
                        (SELECT name FROM cm_user_info AS ui WHERE t.u_id = ui.u_id) AS t_name,
                        (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
                        DATE_FORMAT(bs.date, '%Y.%m.%d %H:%i') AS date_format
@@ -120,7 +120,7 @@ require_once "../connect/db_connect.php";
         ?>
         <tr>
           <td><?= $row['category'] ?></td>
-          <td class="underbar"><a href="./partnerAdd.php"><?= $row['title'] ?></a></td>
+          <td class="underbar"><a href="./transferDetail.php?id=<?= $row['t_id'] ?>"><?= $row['title'] ?></a></td>
           <td><?= $row['memo'] ?></td>
           <td><?= $row['t_name'] ?></td>
           <td><?= $row['m_name'] ?></td>

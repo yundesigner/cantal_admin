@@ -31,14 +31,18 @@ require_once "../connect/db_connect.php";
           <th>댓글작성자</th>
           <th>게시글제목</th>
           <th class="w50">댓글</th>
-          <th>상세보기</th>
+          <th>차단</th>
+          <th>신고현황</th>
         </tr>
         </thead>
         <tbody>
         <?php
+        $confirm_1 = "'댓글을 차단하시겠습니까?'";
+        $confirm_0 = "'차단을 해제하시겠습니까?'";
         $pageNum = 5;
-        $sql = "SELECT r.*, ui.id, ui.name,
-                (SELECT title FROM cm_transfer AS t WHERE r.t_id = t.id) AS title
+        $sql = "SELECT r.*, ui.name,
+                (SELECT title FROM cm_transfer AS t WHERE r.t_id = t.id) AS title,
+                (SELECT COUNT(*) FROM cm_transfer_report WHERE r.id = r_id) AS count
                 FROM cm_reply AS r
                 JOIN cm_user_info AS ui ON r.u_id = ui.u_id
                 ORDER BY r.id DESC";
@@ -52,8 +56,9 @@ require_once "../connect/db_connect.php";
         } elseif ($p > $pageTotal) {
           $p = $p - 5;
         }
-        $sql = "SELECT r.*, ui.id, ui.name,
-                (SELECT title FROM cm_transfer AS t WHERE r.t_id = t.id) AS title
+        $sql = "SELECT r.*, ui.name,
+                (SELECT title FROM cm_transfer AS t WHERE r.t_id = t.id) AS title,
+                (SELECT COUNT(*) FROM cm_transfer_report WHERE r.id = r_id) AS count
                 FROM cm_reply AS r
                 JOIN cm_user_info AS ui ON r.u_id = ui.u_id
                 ORDER BY r.id DESC LIMIT {$p}, {$pageNum}";
@@ -61,16 +66,21 @@ require_once "../connect/db_connect.php";
 
         while ($row = mysqli_fetch_array($result)) {
           $date = date_create($row['date']);
-        ?>
-        <tr>
-          <td class="lh18"><?= date_format($date,"Y.m.d") ?><br /><?= date_format($date,"H:i:s") ?></td>
-          <td class="underbar"><a href="userList.php?id=<?= $row['u_id'] ?>"><?= $row['name'] ?></a></td>
-          <td class="underbar"><a href="match.php?id=<?= $row['t_id'] ?>"><?= $row['title'] ?></a></td>
-          <td><?= $row['content'] ?></td>
-          <td class="detail">
-            <a href="match.php?id=<?= $row['t_id'] ?>" class="btn_detail counselMore">보기</a>
-          </td>
-        </tr>
+          ?>
+          <tr>
+            <td class="lh18"><?= date_format($date, "Y.m.d") ?><br /><?= date_format($date, "H:i:s") ?></td>
+            <td class="underbar"><a href="userList.php?id=<?= $row['u_id'] ?>"><?= $row['name'] ?></a></td>
+            <td class="underbar"><a href="transferDetail.php?id=<?= $row['t_id'] ?>"><?= $row['title'] ?></a></td>
+            <td><?= $row['content'] ?></td>
+            <td><?php
+              if ($row['block'] == 0) {
+                echo '<button class="block"><a href="replyBlock.php?id=' . $row['id'] . '&block=1" onclick="return confirm(' . $confirm_1 . ');" style="color: #fff">차단</a></button>';
+              } else {
+                echo '<button class="block cancel"><a href="replyBlock.php?id=' . $row['id'] . '&block=0" onclick="return confirm(' . $confirm_0 . ');" style="color: #fff">해제</a></button>';
+              }
+              ?></td>
+            <td><?= $row['count'] ?>건</td>
+          </tr>
           <?php
         }
         ?>

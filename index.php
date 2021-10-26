@@ -25,21 +25,29 @@ require_once "../connect/db_connect.php";
     <?php $sort = $_GET['sort']; ?>
 
     <div class="form_wrap">
-      <form action="index.php" method="get" class="search">
-        <input type="search" placeholder="고객이름, 제품명을 입력해주세요." class="txt_search" name="search"
-               value="<?= $search ?>" />
-        <input type="submit" value="" class="btn_search" />
-      </form>
-      <form action="index.php" method="get" class="radio">
-        <p>진행현황</p>
-        <input type="radio" id="all" name="sort" checked />
-        <label for="all">전체</label>
-        <input type="radio" id="wait" name="sort" />
-        <label for="wait">대기</label>
-        <input type="radio" id="complete" name="sort" />
-        <label for="complete">완료</label>
-        <input type="radio" id="cancel" name="sort" />
-        <label for="cancel">취소</label>
+      <form action="index.php" method="get" class="df">
+        <div class="search">
+          <input type="search" placeholder="고객이름, 제품명을 입력해주세요." class="txt_search" name="search"
+                 value="<?= $search ?>" />
+          <input type="submit" value="" class="btn_search" />
+        </div>
+        <div class="radio">
+          <p>진행현황</p>
+          <input type="radio" id="all" name="sort" value="" checked />
+          <label for="all">전체</label>
+          <input type="radio" id="wait" name="sort" value="대기" <?php if ($_GET['sort'] === "대기") {
+            echo "checked";
+          } ?> />
+          <label for="wait">대기</label>
+          <input type="radio" id="complete" name="sort" value="완료" <?php if ($_GET['sort'] === "완료") {
+            echo "checked";
+          } ?> />
+          <label for="complete">완료</label>
+          <input type="radio" id="cancel" name="sort" value="취소" <?php if ($_GET['sort'] === "취소") {
+            echo "checked";
+          } ?> />
+          <label for="cancel">취소</label>
+        </div>
       </form>
     </div>
     <!-- form_wrap -->
@@ -62,10 +70,10 @@ require_once "../connect/db_connect.php";
         <?php
         $pageNum = 15;
         $sql = "SELECT * FROM
-                (SELECT m.id, ui.name, t.product_name, m.status,
+                (SELECT m.id, t.u_id AS t_id, m.u_id AS m_id, m.p_id, ui.name, t.product_name, m.status,
                 DATE_FORMAT(m.date, '%Y.%m.%d') AS date_format,
                 (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
-                (SELECT name FROM cm_user_info AS ui WHERE m.p_id = ui.u_id) AS p_name
+                (SELECT name FROM cm_partner AS p WHERE m.p_id = p.id) AS p_name
                 FROM cm_transfer AS t
                 JOIN cm_matching AS m ON t.id = m.t_id
                 JOIN cm_user_info AS ui ON t.u_id = ui.u_id) AS sub 
@@ -81,10 +89,10 @@ require_once "../connect/db_connect.php";
           $p = $p - 15;
         }
         $sql = "SELECT * FROM
-                (SELECT m.id, ui.name, t.product_name, m.status,
+                (SELECT m.id, t.u_id AS t_id, m.u_id AS m_id, m.p_id, ui.name, t.product_name, m.status,
                 DATE_FORMAT(m.date, '%Y.%m.%d') AS date_format,
                 (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
-                (SELECT name FROM cm_user_info AS ui WHERE m.p_id = ui.u_id) AS p_name
+                (SELECT name FROM cm_partner AS p WHERE m.p_id = p.id) AS p_name
                 FROM cm_transfer AS t
                 JOIN cm_matching AS m ON t.id = m.t_id
                 JOIN cm_user_info AS ui ON t.u_id = ui.u_id) AS sub 
@@ -94,10 +102,10 @@ require_once "../connect/db_connect.php";
         if ($search || $sort) {
           $pageNum = 15;
           $sql = "SELECT * FROM
-                  (SELECT m.id, ui.name, t.product_name, m.status,
+                  (SELECT m.id, t.u_id AS t_id, m.u_id AS m_id, m.p_id, ui.name, t.product_name, m.status,
                   DATE_FORMAT(m.date, '%Y.%m.%d') AS date_format,
                   (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
-                  (SELECT name FROM cm_user_info AS ui WHERE m.p_id = ui.u_id) AS p_name
+                  (SELECT name FROM cm_partner AS p WHERE m.p_id = p.id) AS p_name
                   FROM cm_transfer AS t
                   JOIN cm_matching AS m ON t.id = m.t_id
                   JOIN cm_user_info AS ui ON t.u_id = ui.u_id) AS sub 
@@ -114,10 +122,10 @@ require_once "../connect/db_connect.php";
             $p = $p - 15;
           }
           $sql = "SELECT * FROM
-                  (SELECT m.id, ui.name, t.product_name, m.status,
+                  (SELECT m.id, t.u_id AS t_id, m.u_id AS m_id, m.p_id, ui.name, t.product_name, m.status,
                   DATE_FORMAT(m.date, '%Y.%m.%d') AS date_format,
                   (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
-                  (SELECT name FROM cm_user_info AS ui WHERE m.p_id = ui.u_id) AS p_name
+                  (SELECT name FROM cm_partner AS p WHERE m.p_id = p.id) AS p_name
                   FROM cm_transfer AS t
                   JOIN cm_matching AS m ON t.id = m.t_id
                   JOIN cm_user_info AS ui ON t.u_id = ui.u_id) AS sub 
@@ -130,8 +138,8 @@ require_once "../connect/db_connect.php";
           ?>
           <tr>
             <td><?= $row['id'] ?></td>
-            <td class="underbar"><?= $row['name'] ?></td>
-            <td class="underbar"><?= $row['m_name'] ?></td>
+            <td class="underbar"><a href="./userList.php?id=<?= $row['t_id'] ?>"><?= $row['name'] ?></a></td>
+            <td class="underbar"><a href="./userList.php?id=<?= $row['m_id'] ?>"><?= $row['m_name'] ?></a></td>
             <td><?= $row['date_format'] ?></td>
             <td><?= $row['product_name'] ?></td>
             <td><?= $row['p_name'] ?></td>

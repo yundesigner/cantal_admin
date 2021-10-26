@@ -130,6 +130,10 @@ header p {
   text-align: left;
 }
 
+.wauto{
+  width: auto !important;
+}
+
 .w80 {
   width: 80% !important;
 }
@@ -167,10 +171,18 @@ header p {
   margin-top: 30px;
 }
 
+.mr6{
+  margin-right: 6px !important;
+}
+
 .ml-26 img{
   width: 154px;
   height: 192px;
   margin-left: -26px;
+}
+
+.mb-3{
+  margin-bottom: -3px !important;
 }
 
 .mb15{
@@ -185,6 +197,9 @@ header p {
   padding-right: 15px !important;
 }
 
+.h200{
+  min-height: 150px !important;
+}
 
 .h64 {
   height: 64px !important;
@@ -595,10 +610,6 @@ table tbody {
   display: flex;
 }
 
-.partner_info{
-  display: none;
-}
-
 .match_user {
   width: 60%;
 }
@@ -818,6 +829,10 @@ table tbody {
 
 .counsel_look{
   display: none;
+}
+
+.counsel_look.dtr{
+  display: table-row !important;
 }
 
 .counsel_look textarea {
