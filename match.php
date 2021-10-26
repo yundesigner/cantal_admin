@@ -15,7 +15,6 @@
       <!-- header -->
       <div class="btn-block">
         <h2 class="content_title">매칭 상세보기</h2>
-        <button class="btn_counsel">작성글차단</button>
       </div>
       <div class="match_form">
         <div class="match_title match_box">
@@ -47,12 +46,24 @@
               <li class="li_title">주소</li>
               <li class="li_content">부산광역시 서구 동대신동 1번지</li>
             </ul>
+            <ul class="match_user_volunteer match_box">
+              <li class="li_title">수령자</li>
+              <li class="li_content">박철수</li>
+              <li class="li_title">연락처</li>
+              <li class="li_content">010-1234-5678</li>
+              <li class="li_title">주소</li>
+              <li class="li_content">부산광역시 서구 동대신동 1번지</li>
+              <li class="li_title">배송가능일</li>
+              <li class="li_content">2021.10.25 ~ 2021.10.25</li>
+            </ul>
           </div>
           <div class="match_partner match_box">
             <div class="partner_info">
               <ul>
                 <li class="li_title">파트너</li>
                 <li class="li_content">김영희</li>
+              </ul>
+              <ul>
                 <li class="li_title">연락처</li>
                 <li class="li_content">010-1234-5678</li>
               </ul>
@@ -133,49 +144,6 @@
           </div>
         </div>
         <!-- match_content -->
-
-        <div class="match_comment">
-          <h2 class="content_title">
-            댓글 <span class="comment_counter"></span>
-          </h2>
-          <table class="match_table comment">
-            <thead>
-              <tr>
-                <th>등록시간</th>
-                <th>댓글작성자</th>
-                <th>댓글</th>
-                <th>차단</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="lh18">2021.08.21<br />13:07:11</td>
-                <td class="underbar">김댓글</td>
-                <td class="underbar comment_cnt">내용어쪼고</td>
-                <td><button class="block">차단</button></td>
-              </tr>
-
-              <tr>
-                <td class="lh18">2021.08.21<br />13:07:11</td>
-                <td class="underbar">김댓글</td>
-                <td class="underbar comment_cnt">내용어쪼고</td>
-                <td><button class="block cancel">해제</button></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="page">
-            <ul>
-              <li class="page-left">&lt;</li>
-              <li class="page-on">1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li class="page-right">&gt;</li>
-            </ul>
-          </div>
-          <!-- page -->
-        </div>
-        <!-- match_comment 댓글 -->
 
         <div class="match_counsel">
           <h2 class="content_title">상담현황</h2>
@@ -353,16 +321,6 @@
 
   <script src="http://code.jquery.com/jquery-latest.min.js?ver=<?= time() ?>"></script>
   <script type="text/javascript" src="js/app.js?ver=<?= time() ?>"></script>
-  <script>
-    // 댓글 카운터
-    const comment = document.querySelector("tbody");
-    const eleCount = comment.childElementCount;
-
-    window.onload = function countComment() {
-      const count = document.querySelector(".comment_counter");
-      count.innerHTML = "총 " + eleCount + "개";
-    };
-  </script>
 </body>
 
 </html>

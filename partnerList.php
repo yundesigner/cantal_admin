@@ -88,10 +88,10 @@ require_once "../connect/db_connect.php";
                        (SELECT name FROM cm_user_info AS ui WHERE t.u_id = ui.u_id) AS t_name,
                        (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
                        DATE_FORMAT(bs.date, '%Y.%m.%d %H:%i') AS date_format
-                FROM cm_business_status bs 
-                JOIN cm_matching m ON bs.m_id = m.id
-                LEFT JOIN cm_partner p ON m.p_id = p.id
-                LEFT JOIN cm_transfer t ON m.t_id = t.id
+                FROM cm_business_status AS bs 
+                JOIN cm_matching AS m ON bs.m_id = m.id
+                LEFT JOIN cm_partner AS p ON m.p_id = p.id
+                LEFT JOIN cm_transfer AS t ON m.t_id = t.id
                 WHERE p.id = '{$_GET['id']}'
                 ORDER BY bs.id DESC";
         $result = myQuery($sql);
@@ -108,10 +108,10 @@ require_once "../connect/db_connect.php";
                        (SELECT name FROM cm_user_info AS ui WHERE t.u_id = ui.u_id) AS t_name,
                        (SELECT name FROM cm_user_info AS ui WHERE m.u_id = ui.u_id) AS m_name,
                        DATE_FORMAT(bs.date, '%Y.%m.%d %H:%i') AS date_format
-                FROM cm_business_status bs 
-                JOIN cm_matching m ON bs.m_id = m.id
-                LEFT JOIN cm_partner p ON m.p_id = p.id
-                LEFT JOIN cm_transfer t ON m.t_id = t.id
+                FROM cm_business_status AS bs 
+                JOIN cm_matching AS m ON bs.m_id = m.id
+                LEFT JOIN cm_partner AS p ON m.p_id = p.id
+                LEFT JOIN cm_transfer AS t ON m.t_id = t.id
                 WHERE p.id = '{$_GET['id']}'
                 ORDER BY bs.id DESC LIMIT {$p}, {$pageNum}";
         $result = myQuery($sql);

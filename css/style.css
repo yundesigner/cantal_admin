@@ -945,6 +945,10 @@ table tbody {
   background-color: #565FA8;
 }
 
+.modalPush input, .modalPush textarea{
+  width: 100%;
+}
+
 .modalPush_titleArea {
   border: 1px solid #ccc;
   border-radius: 5px;

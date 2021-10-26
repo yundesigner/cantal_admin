@@ -61,7 +61,8 @@ require_once "../connect/db_connect.php";
             <td class="underbar"><a href="./appBanner.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></td>
             <td><?= $row['date_format'] ?></td>
             <td><?= date_format($start_date, 'Y.m.d') ?>~<?= date_format($end_date, 'Y.m.d') ?></td>
-            <td><?php if (date('Y-m-d') < $row['start_date']) {
+            <td><?php
+              if (date('Y-m-d') < $row['start_date']) {
                 echo '예정';
               } elseif (date('Y-m-d') > $row['end_date']) {
                 echo '종료';

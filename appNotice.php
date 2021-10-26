@@ -68,7 +68,7 @@ require_once "../connect/db_connect.php";
               <td><?= $row['date_format'] ?></td>
               <td><?= $row['name'] ?></td>
               <td class="detail">
-                <a href="./appNoticeAdd.php" class="btn_detail">보기</a>
+                <a href="./appNoticeAdd.php?id=<?= $row['id'] ?>" class="btn_detail">보기</a>
               </td>
             </tr>
             <?php

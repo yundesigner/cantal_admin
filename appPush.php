@@ -69,7 +69,8 @@ require_once "../connect/db_connect.php";
             <td><?= $row['title'] ?></td>
             <td><?= $row['date_format'] ?></td>
             <td><?= $row['a_name'] ?></td>
-            <td><?php if ($row['target'] == '전체') {
+            <td><?php
+              if ($row['target'] == '전체') {
                 echo $row['target'];
               } elseif ($row['target'] == '개인') {
                 echo $row['u_name'];

@@ -64,7 +64,7 @@ require_once "../connect/db_connect.php";
         ?>
         <tr>
           <td class="lh18"><?= date_format($date,"Y.m.d") ?><br /><?= date_format($date,"H:i:s") ?></td>
-          <td class="underbar"><a href="userList.php?id=<?= $row['id'] ?>"><?= $row['name'] ?></a></td>
+          <td class="underbar"><a href="userList.php?id=<?= $row['u_id'] ?>"><?= $row['name'] ?></a></td>
           <td class="underbar"><a href="match.php?id=<?= $row['t_id'] ?>"><?= $row['title'] ?></a></td>
           <td><?= $row['content'] ?></td>
           <td class="detail">
