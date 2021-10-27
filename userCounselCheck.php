@@ -124,7 +124,7 @@ $row = mysqli_fetch_array($result);
           </div>
           <div class="btn_wrap">
 <!--            <button class="block" onclick="answerRemove()">답변삭제</button>-->
-            <button class="block"><a href="userCounselCheck_delete.php?id=<?= $_GET['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');" class="a-black">답변삭제</a></button>
+            <button class="block"><a href="userCounselCheck_delete.php?id=<?= $_GET['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');" class="a-black custom">답변삭제</a></button>
             <button class="block" onclick="openModal('Answer')">답변수정</button>
           </div>
         </div>

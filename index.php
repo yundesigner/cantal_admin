@@ -142,7 +142,7 @@ require_once "../connect/db_connect.php";
             <td class="underbar"><a href="./userList.php?id=<?= $row['m_id'] ?>"><?= $row['m_name'] ?></a></td>
             <td><?= $row['date_format'] ?></td>
             <td><?= $row['product_name'] ?></td>
-            <td><?= $row['p_name'] ?></td>
+            <td class="underbar"><a href="./partnerList.php?id=<?= $row['p_id'] ?>"><?= $row['p_name'] ?></a></td>
             <td><?= $row['status'] ?></td>
             <td class="detail">
               <a href="match.php?id=<?= $row['id'] ?>">

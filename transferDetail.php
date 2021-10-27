@@ -133,7 +133,7 @@ $t_confirm_0 = "'차단을 해제하시겠습니까?'";
             <tr>
               <td class="lh18"><?= date_format($date, "Y.m.d") ?><br /><?= date_format($date, "H:i:s") ?></td>
               <td class="underbar"><?= $row['name'] ?></td>
-              <td class="underbar comment_cnt"><?= $row['content'] ?></td>
+              <td><?= $row['content'] ?></td>
               <td><?php
                 if ($row['block'] == 0) {
                   echo '<button class="block"><a href="replyBlock.php?id=' . $row['id'] . '&block=1" onclick="return confirm(' . $r_confirm_1 . ');" style="color: #fff">차단</a></button>';

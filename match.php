@@ -11,7 +11,7 @@ $sql = "SELECT * FROM
 
         JOIN
 
-        (SELECT m.id, ui.name AS m_name, ui.phone AS m_phone, ui.address AS m_address, ui.address_detail AS m_address_detail
+        (SELECT m.id, m.u_id AS m_u_id,ui.name AS m_name, ui.phone AS m_phone, ui.address AS m_address, ui.address_detail AS m_address_detail
         FROM cm_matching AS m
         JOIN cm_user_info AS ui ON m.u_id = ui.u_id AND m.id = '{$_GET['id']}') AS b ON a.id = b.id
 
@@ -25,6 +25,8 @@ $result = myQuery($sql);
 $row = mysqli_fetch_array($result);
 
 $u_id = $row['u_id'];
+$name = $row['name'];
+$m_u_id = $row['m_u_id'];
 $m_name = $row['m_name'];
 $d_phone = $row['d_phone'];
 $d_address = $row['d_address'];
@@ -67,6 +69,15 @@ $image_path = $row['image_path'];
       </div>
       <!-- match_title -->
 
+      <script src="http://code.jquery.com/jquery-latest.min.js?ver=<?= time() ?>"></script>
+      <script>
+        function openModal(num) {
+          $(".modal" + num).css("display", "flex");
+          $(".modal_close").click(function () {
+            $(".modal" + num).css("display", "none");
+          });
+        }
+      </script>
       <div class="match_person">
         <div class="match_user">
           <ul class="match_user_writer match_box">
@@ -116,9 +127,8 @@ $image_path = $row['image_path'];
 
       <script type="text/javascript">
         function update_cate1() {
-          var company = $('#company_name opation:selected').val();
+          var company = $('#company option:selected').val();
           $.get('get_cate.php?type=1&company=' + company, show_cates1);
-          console.log(company);
         }
 
         function show_cates1(res) {
@@ -127,7 +137,7 @@ $image_path = $row['image_path'];
         }
 
         function update_cate2() {
-          var company = $('#company_name option:selected').val();
+          var company = $('#company option:selected').val();
           var p_name = $('#p_name option:selected').val();
           $.get('get_cate.php?type=2&company=' + company + '&p_name=' + p_name, show_cates2);
         }
@@ -138,13 +148,13 @@ $image_path = $row['image_path'];
       </script>
 
       <div class="modal_window modalPartner">
-        <div class="modal">
-          <form action="">
+        <div class="modal w314">
+          <form action="match_partner.php?id=<?= $_GET['id'] ?>" method="post">
             <div class="modal_in">
               <h3 class="modal_title fw800">파트너등록</h3>
               <div class="modal_section">
                 <h3 class="modal_title">업체이름</h3>
-                <select id="company_name" name="company_name" class="select_basic" onchange="update_cate1();">
+                <select id="company" name="company" class="select_basic" onchange="update_cate1();">
                   <option value="">업체선택</option>
                   <?php
                   $sql = "SELECT company_name FROM cm_partner GROUP BY company_name ORDER BY company_name ASC";
@@ -166,7 +176,9 @@ $image_path = $row['image_path'];
               </div>
               <div class="modal_section">
                 <h3 class="modal_title">연락처</h3>
-                <input type="text" id="p_phone" class="modal_content" value="">
+                <select id="p_phone" name="p_phone" class="select_basic">
+                  <option value=""></option>
+                </select>
               </div>
             </div>
             <div class="array">
@@ -204,15 +216,33 @@ $image_path = $row['image_path'];
           <li class="li_title">매칭현황</li>
           <li class="li_content"><?= $status ?></li>
         </ul>
-        <form action="" id="match_status">
+        <form action="match_status.php?id=<?= $_GET['id'] ?>" method="post" id="match_status">
           <select name="match_status" id="match_select">
-            <option value="matchcheck">매칭대기</option>
-            <option value="matchprogress">매칭진행</option>
-            <option value="matchcomplete">매칭완료</option>
-            <option value="matchcancel">매칭취소</option>
+            <option value="매칭대기" <?php if ($status === "매칭대기") {
+              echo "selected";
+            } ?>>매칭대기
+            </option>
+            <option value="매칭진행" <?php if ($status === "매칭진행") {
+              echo "selected";
+            } ?>>매칭진행
+            </option>
+            <option value="매칭완료" <?php if ($status === "매칭완료") {
+              echo "selected";
+            } ?>>매칭완료
+            </option>
+            <option value="매칭취소" <?php if ($status === "매칭취소") {
+              echo "selected";
+            } ?>>매칭취소
+            </option>
           </select>
           <button type="submit" class="match_status_submit mr6">수정</button>
-          <button type="button" class="match_status_submit gray wauto" onclick="openModal('Cancle')">취소사유</button>
+          <?php
+          if ($status == '매칭취소') {
+            ?>
+            <button type="button" class="match_status_submit gray wauto" onclick="openModal('Cancle')">취소사유</button>
+            <?php
+          }
+          ?>
         </form>
       </div>
       <div class="modal_window modalCancle">
@@ -261,92 +291,153 @@ $image_path = $row['image_path'];
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>2021.07.12 10:55</td>
-            <td class="underbar">홍길동</td>
-            <td class="underbar">이캔탈</td>
-            <td>전화</td>
-            <td class="detail">
-              <button class="btn_detail counselMore">보기</button>
-            </td>
-            <td>
-              <div class="etc"></div>
-            </td>
-          </tr>
-          <tr class="counsel_look">
-            <td colspan="6">
-              <textarea></textarea>
-              <div class="btn_wrap">
-                <button class="block cancel">삭제</button>
-                <button type="submit" class="match_status_submit">수정</button>
-              </div>
-            </td>
-          </tr>
+          <?php
+          $c_pageNum = 2;
+          $sql = "SELECT c.*, ui.name,
+                  (SELECT name FROM cm_user_info AS ui WHERE c.ua_id = ui.u_id) AS a_name
+                  FROM cm_consult AS c
+                  JOIN cm_user_info AS ui ON c.u_id = ui.u_id AND c.m_id = '{$_GET['id']}'
+                  ORDER BY c.id DESC";
+          $result = myQuery($sql);
+          $c_pageTotal = mysqli_num_rows($result);
+          $c_p = $_GET['c_p'];
+          if (empty($c_p)) {
+            $c_p = 0;
+          } elseif ($c_p < 0) {
+            $c_p = 0;
+          } elseif ($c_p > $c_pageTotal) {
+            $c_p = $c_p - 2;
+          }
+          $sql = "SELECT c.*, ui.name,
+                  (SELECT name FROM cm_user_info AS ui WHERE c.ua_id = ui.u_id) AS a_name
+                  FROM cm_consult AS c
+                  JOIN cm_user_info AS ui ON c.u_id = ui.u_id AND c.m_id = '{$_GET['id']}'
+                  ORDER BY c.id DESC LIMIT {$c_p}, {$c_pageNum}";
+          $result = myQuery($sql);
 
-          <tr>
-            <td>2021.08.12 13:01</td>
-            <td class="underbar">홍길동</td>
-            <td class="underbar">이캔탈</td>
-            <td>전화</td>
-            <td class="detail">
-              <button class="btn_detail counselMore">보기</button>
-            </td>
-            <td>
-              <div class="etc"></div>
-            </td>
-          </tr>
-          <tr class="counsel_look">
-            <td colspan="6">
-              <textarea></textarea>
-              <div class="btn_wrap">
-                <button class="block cancel">삭제</button>
-                <button type="submit" class="match_status_submit">수정</button>
-              </div>
-            </td>
-          </tr>
+          while ($row = mysqli_fetch_array($result)) {
+            $date = date_create($row['date']);
+            ?>
+            <tr>
+              <td><?= date_format($date, "Y.m.d H:i") ?></td>
+              <td class="underbar"><a href="./userList.php?id=<?= $row['u_id'] ?>"><?= $row['name'] ?></a></td>
+              <td><?= $row['a_name'] ?></td>
+              <td><?= $row['category'] ?></td>
+              <td class="detail">
+                <button class="btn_detail counselMore">보기</button>
+              </td>
+              <td>
+                <div class="etc"><?= $row['memo'] ?></div>
+              </td>
+            </tr>
+
+            <tr class="counsel_look">
+              <form action="consult_update.php?id=<?= $row['id'] ?>" method="post">
+                <td colspan="6">
+                  <textarea name="content"><?= $row['content'] ?></textarea>
+                  <div class="btn_wrap">
+                    <button type="button" class="block cancel">
+                      <a href="consult_delete.php?id=<?= $row['id'] ?>" onclick="return confirm('상담을 삭제하시겠습니까?');" style="color: #fff">삭제</a>
+                    </button>
+                    <button type="submit" class="match_status_submit">수정</button>
+                  </div>
+                </td>
+              </form>
+            </tr>
+            <?php
+          }
+          ?>
           </tbody>
         </table>
-        <div class="page">
-          <ul>
-            <li class="page-left">&lt;</li>
-            <li class="page-on">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li class="page-right">&gt;</li>
-          </ul>
-        </div>
+        <?php
+        if ($date) {
+          ?>
+          <div class="page">
+            <ul>
+              <a href='/admin/match.php?id=<?= $_GET['id'] ?>&c_p=<?php
+              if ($c_p <= 0) {
+                echo $c_p;
+              } else {
+                echo $c_p - 2;
+              }
+              ?>'>
+                <li class="page-left">&lt;</li>
+              </a>
+              <?php
+              $id = $_GET['id'];
+              $c_pages = ceil($c_pageTotal / $c_pageNum);
+              $c_pageGroup = ceil($c_pages / 10);
+              $c_pageCount = ceil(ceil($c_pages / $c_pageGroup) / 10) * 10;
+              $c_pageEnd = ceil($c_pageTotal / 20) * 20 - 2;
+
+              for ($j = 1; $j < $c_pageGroup + 1; $j++) {
+                if ($c_p < 20) {
+                  $c_Count = 1;
+                } elseif ($c_p <= $c_pageEnd - (20 * ($j - 1))) {
+                  $c_Count = 1 + (10 * $c_pageGroup) - (10 * $j);
+                }
+              }
+
+              for ($i = $c_Count; $i - $c_Count < $c_pageCount; $i++) {
+                $c_nextPage = $c_pageNum * ($i - 1);
+                $c_activePage = $_GET['c_p'] / 2 + 1;
+                $className = '';
+                if ($c_activePage == $i) {
+                  $className = 'page-on';
+                }
+                echo "<a href='$_SERVER[PHP_SELF]?id=$id&c_p=$c_nextPage";
+
+                echo "'><li class='$className'>$i</li></a>";
+
+                if ($i >= $c_pages) {
+                  $i = $c_pages;
+                  break;
+                }
+              }
+              ?>
+              <a href='/admin/match.php?id=<?= $_GET['id'] ?>&c_p=<?php
+              if ($c_p + 2 >= $c_pageTotal) {
+                echo $c_p;
+              } else {
+                echo $c_p + 2;
+              }
+              ?>'>
+                <li class="page-right">&gt;</li>
+              </a>
+            </ul>
+          </div>
+          <?php
+        }
+        ?>
         <!-- page -->
       </div>
       <!-- match_counsel -->
       <div class="modal_window modalCounsel">
         <div class="modal">
-          <h3 class="modal_title">상담내용작성</h3>
-          <div class="modal_section">
-            <h3 class="modal_title pr15">신청자</h3>
-            <form action="" id="counselUser_section">
-              <select name="counselUser_section" class="select_basic">
-                <option value=""></option>
-                <option value=""></option>
+          <form action="consult_create.php?id=<?= $_GET['id'] ?>" method="post">
+            <h3 class="modal_title">상담내용작성</h3>
+            <div class="modal_section">
+              <h3 class="modal_title pr15">신청자</h3>
+              <select name="u_id" class="select_basic">
+                <option value="<?= $u_id ?>"><?= $name ?></option>
+                <option value="<?= $m_u_id ?>"><?= $m_name ?></option>
               </select>
-            </form>
-          </div>
-          <div class="modal_section">
-            <h3 class="modal_title">상담방식</h3>
-            <form action="" id="counselWay_section">
-              <select name="counselUser_section" class="select_basic">
-                <option value="call">전화</option>
-                <option value="email">이메일</option>
-                <option value="interview">면담</option>
-                <option value="etc">기타</option>
+            </div>
+            <div class="modal_section">
+              <h3 class="modal_title">상담방식</h3>
+              <select name="category" class="select_basic">
+                <option value="전화">전화</option>
+                <option value="이메일">이메일</option>
+                <option value="면담">면담</option>
+                <option value="기타">기타</option>
               </select>
-            </form>
-          </div>
-          <textarea class="modal_content"></textarea>
-          <div class="array">
-            <button class="modal_close">취소</button>
-            <button class="modal_close">상담등록</button>
-          </div>
+            </div>
+            <textarea class="modal_content" name="content"></textarea>
+            <div class="array">
+              <button type="button" class="modal_close">취소</button>
+              <button type="submit" class="modal_close">상담등록</button>
+            </div>
+          </form>
         </div>
       </div>
       <!-- modalCounsel -->
@@ -363,27 +454,87 @@ $image_path = $row['image_path'];
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>연락</td>
-            <td></td>
-            <td>2021.08.12 13:01</td>
-          </tr>
+          <?php
+          $b_pageNum = 2;
+          $sql = "SELECT * FROM cm_business_status WHERE m_id = '{$_GET['id']}' ORDER BY id DESC";
+          $result = myQuery($sql);
+          $b_pageTotal = mysqli_num_rows($result);
+          $b_p = $_GET['b_p'];
+          if (empty($b_p)) {
+            $b_p = 0;
+          } elseif ($b_p < 0) {
+            $b_p = 0;
+          } elseif ($b_p > $b_pageTotal) {
+            $b_p = $b_p - 2;
+          }
+          $sql = "SELECT * FROM cm_business_status WHERE m_id = '{$_GET['id']}' ORDER BY id DESC LIMIT {$b_p}, {$b_pageNum}";
+          $result = myQuery($sql);
 
-          <tr>
-            <td>배송완료</td>
-            <td></td>
-            <td class="">2021.08.12 13:01</td>
-          </tr>
+          while ($row = mysqli_fetch_array($result)) {
+            $date = date_create($row['date']);
+            ?>
+            <tr>
+              <td><?= $row['category'] ?></td>
+              <td><?= $row['memo'] ?></td>
+              <td><?= date_format($date, 'Y.m.d H:i') ?></td>
+            </tr>
+            <?php
+          }
+          ?>
           </tbody>
         </table>
         <div class="page">
           <ul>
-            <li class="page-left">&lt;</li>
-            <li class="page-on">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li class="page-right">&gt;</li>
+            <a href='/admin/match.php?id=<?= $_GET['id'] ?>&b_p=<?php
+            if ($b_p <= 0) {
+              echo $b_p;
+            } else {
+              echo $b_p - 2;
+            }
+            ?>'>
+              <li class="page-left">&lt;</li>
+            </a>
+            <?php
+            $id = $_GET['id'];
+            $b_pages = ceil($b_pageTotal / $b_pageNum);
+            $b_pageGroup = ceil($b_pages / 10);
+            $b_pageCount = ceil(ceil($b_pages / $b_pageGroup) / 10) * 10;
+            $b_pageEnd = ceil($b_pageTotal / 20) * 20 - 2;
+
+            for ($j = 1; $j < $b_pageGroup + 1; $j++) {
+              if ($b_p < 20) {
+                $b_Count = 1;
+              } elseif ($b_p <= $b_pageEnd - (20 * ($j - 1))) {
+                $b_Count = 1 + (10 * $b_pageGroup) - (10 * $j);
+              }
+            }
+
+            for ($i = $b_Count; $i - $b_Count < $b_pageCount; $i++) {
+              $b_nextPage = $b_pageNum * ($i - 1);
+              $b_activePage = $_GET['b_p'] / 2 + 1;
+              $className = '';
+              if ($b_activePage == $i) {
+                $className = 'page-on';
+              }
+              echo "<a href='$_SERVER[PHP_SELF]?id=$id&b_p=$b_nextPage";
+
+              echo "'><li class='$className'>$i</li></a>";
+
+              if ($i >= $b_pages) {
+                $i = $b_pages;
+                break;
+              }
+            }
+            ?>
+            <a href='/admin/match.php?id=<?= $_GET['id'] ?>&b_p=<?php
+            if ($b_p + 2 >= $b_pageTotal) {
+              echo $b_p;
+            } else {
+              echo $b_p + 2;
+            }
+            ?>'>
+              <li class="page-right">&gt;</li>
+            </a>
           </ul>
         </div>
         <!-- page -->
@@ -391,24 +542,24 @@ $image_path = $row['image_path'];
       <!-- match_work -->
       <div class="modal_window modalWork">
         <div class="modal">
-          <h3 class="modal_title">업무등록</h3>
-          <div class="modal_section">
-            <h3 class="modal_title">구분</h3>
-            <form action="" id="work_section">
-              <select name="work_section" class="select_basic">
-                <option value="contact">연락</option>
-                <option value="shipsucess">배송완료</option>
+          <form action="business_create.php?id=<?= $_GET['id'] ?>" method="post">
+            <h3 class="modal_title">업무등록</h3>
+            <div class="modal_section">
+              <h3 class="modal_title">구분</h3>
+              <select name="category" class="select_basic">
+                <option value="연락">연락</option>
+                <option value="배송완료">배송완료</option>
               </select>
-            </form>
-          </div>
-          <div class="modal_section">
-            <h3 class="modal_title">메모</h3>
-            <textarea class="modal_content"></textarea>
-          </div>
-          <div class="array">
-            <button class="modal_close">취소</button>
-            <button class="modal_close">업무등록</button>
-          </div>
+            </div>
+            <div class="modal_section">
+              <h3 class="modal_title">메모</h3>
+              <textarea class="modal_content" name="memo"></textarea>
+            </div>
+            <div class="array">
+              <button type="button" class="modal_close">취소</button>
+              <button type="submit" class="modal_close">업무등록</button>
+            </div>
+          </form>
         </div>
       </div>
       <!-- modalWork -->

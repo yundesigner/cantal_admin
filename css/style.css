@@ -142,6 +142,10 @@ header p {
   width: 100% !important;
 }
 
+.w314{
+  width: 314px !important;
+}
+
 .w400{
   width: 400px;
 }
@@ -1058,6 +1062,10 @@ table tbody {
   font-size: 14px;
   font-weight: 100 !important;
   padding-top:4px !important;
+}
+
+.a-black.custom{
+  padding-top: 0 !important;
 }
 
 /* 파트너페이지 - partnerAddPage */
