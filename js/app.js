@@ -1,7 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function(){
-// });
-
-
 // 로그인 창
 function login() {
   const login = document.querySelector('.login');
